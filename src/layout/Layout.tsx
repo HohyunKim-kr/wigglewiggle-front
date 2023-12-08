@@ -3,11 +3,19 @@
 import { ReactNode } from "react";
 import { styled } from "styled-components";
 import Header from "./Header";
+import { usePathname } from "next/navigation";
 
 const Layout = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
+  const showHeader = () => {
+    if (pathname == "/") {
+      return false;
+    }
+    return true;
+  };
   return (
     <>
-      <Header />
+      {showHeader() && <Header />}
       <BodyContainer>{children}</BodyContainer>
     </>
   );
