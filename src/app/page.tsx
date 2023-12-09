@@ -4,11 +4,15 @@ import styled from "styled-components";
 
 export default function Home() {
   return (
-    <div>
+    <Container>
       <PeachButton>Game Start</PeachButton>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  height: 100vh;
+`;
 
 const PeachButton = styled.button`
   width: 430px;

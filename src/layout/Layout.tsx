@@ -16,15 +16,19 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       {showHeader() && <Header />}
-      <BodyContainer>{children}</BodyContainer>
+      <BodyContainer $top={showHeader() ? "100px" : "none"}>
+        {children}
+      </BodyContainer>
     </>
   );
 };
 
-const BodyContainer = styled.div`
-  background-color: #5e5d5d;
+const BodyContainer = styled.div<{ $top: string }>`
+  background-color: #313131;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+
+  padding-top: ${(props) => props.$top};
 
   overflow: auto;
 `;

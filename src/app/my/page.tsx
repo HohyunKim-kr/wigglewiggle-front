@@ -1,10 +1,12 @@
 "use client";
+
 import { styled } from "styled-components";
-const Editor = () => {
+
+const My = () => {
   return <Container></Container>;
 };
 
-export default Editor;
+export default My;
 
 const Container = styled.div`
   height: calc(100vh - 100px);

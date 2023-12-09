@@ -27,6 +27,14 @@ const GlobalStyle = createGlobalStyle`
     src: url('/static/ABeeZee/ABeeZee-Italic.ttf') format('truetype');
   }
 
+  // AnekDevanagari
+  @font-face {
+    font-family: 'AnekDevanagari';
+    src: local('AnekDevanagariRegular');
+    font-style: normal;
+    src: url('public/static/AnekDevanagari/AnekDevanagari-Regular.ttf') format('truetype');
+  }
+
 `;
 
 export default GlobalStyle;
