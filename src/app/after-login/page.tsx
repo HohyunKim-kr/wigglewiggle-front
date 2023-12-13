@@ -1,4 +1,5 @@
 "use client";
+import W3AWallet from "@/components/W3AWallet";
 import YellowButton from "@/components/YellowButton";
 import colors from "@/styles/color";
 import { useRouter } from "next/navigation";
@@ -20,11 +21,12 @@ const AfterLogin = () => {
               justifyContent: "center",
             }}
           >
-            <YellowButton
+            {/* <YellowButton
               text="Game Start"
               margin="167px 0 0 0"
               onClickHandler={() => router.push("/game")}
-            />
+            /> */}
+            <W3AWallet />
           </div>
         </div>
       </Section>

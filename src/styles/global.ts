@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'AnekDevanagari';
     src: local('AnekDevanagariRegular');
     font-style: normal;
-    src: url('public/static/AnekDevanagari/AnekDevanagari-Regular.ttf') format('truetype');
+    src: url('/static/AnekDevanagari/AnekDevanagari-Regular.ttf') format('truetype');
   }
 
 `;
