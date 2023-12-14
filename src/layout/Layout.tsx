@@ -3,20 +3,32 @@
 import { ReactNode } from "react";
 import { styled } from "styled-components";
 import Header from "./Header";
+import { usePathname } from "next/navigation";
 
 const Layout = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
+  const showHeader = () => {
+    if (pathname == "/") {
+      return false;
+    }
+    return true;
+  };
   return (
     <>
-      <Header />
-      <BodyContainer>{children}</BodyContainer>
+      {showHeader() && <Header />}
+      <BodyContainer $top={showHeader() ? "100px" : "none"}>
+        {children}
+      </BodyContainer>
     </>
   );
 };
 
-const BodyContainer = styled.div`
-  background-color: #5e5d5d;
+const BodyContainer = styled.div<{ $top: string }>`
+  background-color: #313131;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+
+  padding-top: ${(props) => props.$top};
 
   overflow: auto;
 `;
