@@ -1,7 +1,12 @@
 "use client";
+import PaintBoard from "@/components/paintBoard/PaintBoard";
 import { styled } from "styled-components";
 const Editor = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <PaintBoard />
+    </Container>
+  );
 };
 
 export default Editor;

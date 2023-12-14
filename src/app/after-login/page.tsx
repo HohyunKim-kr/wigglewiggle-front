@@ -21,12 +21,12 @@ const AfterLogin = () => {
               justifyContent: "center",
             }}
           >
-            {/* <YellowButton
+            <YellowButton
               text="Game Start"
               margin="167px 0 0 0"
               onClickHandler={() => router.push("/game")}
-            /> */}
-            <W3AWallet />
+            />
+            {/* <W3AWallet /> */}
           </div>
         </div>
       </Section>
