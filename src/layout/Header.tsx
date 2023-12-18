@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <Container>
       <Logo
-        onClick={() => router.push("/after-login")} //수정 필요
+        onClick={() => router.push("/")} //수정 필요
       >
         Wiggle Wiggle
       </Logo>

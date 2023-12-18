@@ -26,18 +26,6 @@ const PaintBoard = () => {
     setDrawColor(event.target.value);
   };
 
-  //   const startDrawing = (
-  //     event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
-  //   ) => {
-  //     const rect = canvasRef.current?.getBoundingClientRect();
-  //     const context = canvasRef.current?.getContext("2d");
-  //     if (rect && context) {
-  //       setIsDrawing(true);
-  //       context.beginPath();
-  //       context.moveTo(event.clientX - rect.left, event.clientY - rect.top);
-  //     }
-  //   };
-
   const startDrawing = (
     event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
   ) => {
@@ -76,17 +64,6 @@ const PaintBoard = () => {
     setIsDrawing(false);
   };
 
-  //   const saveCurrentState = () => {
-  //     const canvas = canvasRef.current;
-  //     const context = canvasRef.current?.getContext("2d");
-  //     if (canvas && context) {
-  //       restoreArray.push(
-  //         context.getImageData(0, 0, canvas.width, canvas.height)
-  //       );
-  //       setIndex(index + 1);
-  //     }
-  //   };
-
   const saveCurrentState = () => {
     const canvas = canvasRef.current;
     const context = canvasRef.current?.getContext("2d");
@@ -97,16 +74,6 @@ const PaintBoard = () => {
       setIndex((prevIndex) => prevIndex + 1);
     }
   };
-
-  //   const undoLast = () => {
-  //     if (index <= 0) {
-  //       clearCanvas();
-  //     } else {
-  //       setIndex(index - 1);
-  //       const context = canvasRef.current?.getContext("2d");
-  //       context?.putImageData(restoreArray[index], 0, 0);
-  //     }
-  //   };
 
   const undoLast = () => {
     if (index <= 0) {
