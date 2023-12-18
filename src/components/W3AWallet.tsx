@@ -5,8 +5,12 @@ import {
   WEB3AUTH_NETWORK,
 } from "@web3auth/base";
 import { Web3Auth, Web3AuthOptions } from "@web3auth/modal";
-import YellowButton from "./YellowButton";
-import { useEffect } from "react";
+import YellowShortButton from "./YellowShortButton";
+import { useEffect, useState } from "react";
+import YellowLongButton from "./YellowLongButton";
+import Web3 from "web3";
+import { useDispatch } from "react-redux";
+import { SET_USER_LOGIN } from "@/redux/slice/authSlice";
 
 const W3AWallet = () => {
   const Web3AuthOptions: Web3AuthOptions = {
@@ -31,6 +35,8 @@ const W3AWallet = () => {
   };
 
   const web3auth = new Web3Auth(Web3AuthOptions);
+  const [web3, setWeb3] = useState<Web3 | null>(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     async function initialize() {
       await web3auth.initModal();
@@ -58,13 +64,27 @@ const W3AWallet = () => {
     });
   };
   return (
-    <YellowButton
-      text={"Connect"}
+    <YellowLongButton
+      text={"CONNECT WALLET"}
       onClickHandler={async () => {
-        await web3auth.connect();
+        const web3authProvider = await web3auth.connect();
+        const web3 = new Web3(web3authProvider!);
+        setWeb3(web3);
+
         const userInfo = await web3auth.getUserInfo();
         console.log(userInfo);
+        const address = (await web3!.eth.getAccounts())[0];
+        console.log(address);
+        dispatch(
+          SET_USER_LOGIN({
+            address: address,
+            email: userInfo.email,
+            nickname: userInfo.name,
+            profileImage: userInfo.profileImage,
+          })
+        );
       }}
+      margin="99px 0 0 0"
     />
   );
 };

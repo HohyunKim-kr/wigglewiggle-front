@@ -7,7 +7,7 @@ type Props = {
   onClickHandler: () => void;
 };
 
-const YellowButton = ({ text, margin, onClickHandler }: Props) => {
+const YellowShortButton = ({ text, margin, onClickHandler }: Props) => {
   return (
     <Container $margin={margin} onClick={() => onClickHandler()}>
       {text}
@@ -15,7 +15,7 @@ const YellowButton = ({ text, margin, onClickHandler }: Props) => {
   );
 };
 
-export default YellowButton;
+export default YellowShortButton;
 
 const Container = styled.div<{ $margin?: string }>`
   width: 430px;

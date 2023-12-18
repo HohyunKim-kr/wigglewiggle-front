@@ -1,6 +1,6 @@
 "use client";
 import W3AWallet from "@/components/W3AWallet";
-import YellowButton from "@/components/YellowButton";
+import YellowShortButton from "@/components/YellowShortButton";
 import colors from "@/styles/color";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -21,27 +21,26 @@ const AfterLogin = () => {
               justifyContent: "center",
             }}
           >
-            <YellowButton
+            <YellowShortButton
               text="Game Start"
               margin="167px 0 0 0"
               onClickHandler={() => router.push("/game")}
             />
-            {/* <W3AWallet /> */}
           </div>
         </div>
       </Section>
       <Section>
         <EditorWrapper>
           <EditorPreview>editor preview가 들어갈 자리</EditorPreview>
-          <YellowButton
+          <YellowShortButton
             text="Editor"
             onClickHandler={() => router.push("/editor")}
-          ></YellowButton>
+          ></YellowShortButton>
         </EditorWrapper>
       </Section>
       <Section>
         <MarketplaceWrapper>
-          <YellowButton
+          <YellowShortButton
             text="Market Place"
             onClickHandler={() => router.push("/market-place")}
           />
