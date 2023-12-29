@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/store";
-import Web3 from "web3";
+import Web3, { Contract } from "web3";
 import { AlchemyProvider, ethers } from "ethers";
 
 interface IWeb3State {

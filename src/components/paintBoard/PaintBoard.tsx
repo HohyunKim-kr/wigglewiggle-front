@@ -134,10 +134,10 @@ const PaintBoard = () => {
           value={drawWidth}
           onChange={(e) => setDrawWidth(e.target.value)}
         />
-        <Button onClick={saveCurrentState}>save</Button>
-        <Button onClick={undoLast}>undo</Button>
-        <Button onClick={clearCanvas}>clear</Button>
-        <Button onClick={download}>download</Button>
+        <PaintBoardButton onClick={saveCurrentState}>save</PaintBoardButton>
+        <PaintBoardButton onClick={undoLast}>undo</PaintBoardButton>
+        <PaintBoardButton onClick={clearCanvas}>clear</PaintBoardButton>
+        <PaintBoardButton onClick={download}>download</PaintBoardButton>
       </ToolBar>
     </div>
   );
@@ -178,7 +178,7 @@ export const ColorField = styled.div<{ $isClicked: boolean }>`
   align-self: center;
 `;
 
-export const Button = styled.button`
+export const PaintBoardButton = styled.button`
   align-self: center;
   width: 100px;
   height: 40px;

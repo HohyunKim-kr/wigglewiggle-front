@@ -78,8 +78,6 @@ const W3AWallet = () => {
         const web3 = new Web3(web3authProvider!);
         setWeb3(web3);
 
-        console.log(process.env.NEXT_PUBLIC_API_KEY);
-
         const provider = new AlchemyProvider(
           "maticmum",
           process.env.NEXT_PUBLIC_API_KEY
