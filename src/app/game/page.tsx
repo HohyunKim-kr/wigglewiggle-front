@@ -4,17 +4,16 @@ import { styled } from "styled-components";
 import ABI from "../../abis/WiggleFree.json";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProviderState, getSignerState } from "@/redux/slice/web3Slice";
 import { getAddressState } from "@/redux/slice/authSlice";
 import YellowLongButton from "@/components/YellowLongButton";
-import { useWeb3Auth } from "@/context/Web3AuthContext";
+import { getNFTMetadata } from "@/lib/alchemy";
 
-const wiggleFreeAddress = "0x3d9E329f07eA03e792aA07B0025da568D4e608C4";
+const wiggleFreeAddress = "0xb275ba3BC567A8fbC4F812Fd39098A58952Fb887";
 
 const Game = () => {
   const provider = new AlchemyProvider(
     "maticmum",
-    process.env.NEXT_PUBLIC_API_KEY
+    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
   );
   const signer = new ethers.Wallet( //contract 소유자가 직접 트랜잭션을 보내야함.
     process.env.NEXT_PUBLIC_PRIVATE_KEY!,
@@ -26,6 +25,27 @@ const Game = () => {
   let wiggleFreeContract = new ethers.Contract(wiggleFreeAddress, ABI, signer);
 
   const [isFreeCharacterExist, setIsFreeCharacterExist] = useState(false);
+  const [imageURL, setImageURL] = useState("");
+
+  // //Alchemy SDK
+  // // Configuring Alchemy SDK with your API key and network
+  // const settings = {
+  //   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY, // Replace with your Alchemy API Key.
+  //   network: Network.MATIC_MUMBAI, // Replace with the network your NFT is on.
+  // };
+
+  // // Creating an Alchemy instance to make calls to the Alchemy API
+  // const alchemy = new Alchemy(settings);
+
+  // // Function to get the metadata of an NFT: accepts the NFT contract address and the token ID to get the metadata of
+  // async function getNFTMetadata(nftContractAddress: string, tokenId: string) {
+  //   // Making a call to the Alchemy API to get the metadata
+  //   const response = await alchemy.nft.getNftMetadata(
+  //     nftContractAddress,
+  //     tokenId
+  //   );
+  //   return response; // returning the metadata
+  // }
 
   const checkFreeCharacterExistence = async () => {
     wiggleFreeContract.connect(signer);
@@ -34,10 +54,22 @@ const Game = () => {
     for (let i = 0; i < userList.length; i++) {
       if (userAddress === userList[i]) {
         setIsFreeCharacterExist(true);
-        const tokenID = await wiggleFreeContract.getTokenIdByAddress(
-          userAddress
+        const tokenID = Number(
+          await wiggleFreeContract.getTokenIdByAddress(userAddress)
         );
-        console.log(Number(tokenID));
+
+        const gatewayURL = (
+          await getNFTMetadata(
+            wiggleFreeAddress, //  World of Women NFT contract address: Replace with your own NFT contract address
+            tokenID.toString() // Replace with the token id you want to get the metadata of
+          )
+        ).tokenUri?.slice(0, -1); //마지막에 0이 붙어서 나와서 이를 잘라주어야 함.
+        console.log(gatewayURL);
+
+        if (gatewayURL) {
+          setImageURL(gatewayURL);
+        }
+
         break;
       }
       setIsFreeCharacterExist(false);
@@ -62,7 +94,9 @@ const Game = () => {
   return (
     <Container>
       {isFreeCharacterExist ? (
-        <div></div>
+        <div>
+          <img src={imageURL} />
+        </div>
       ) : (
         <ButtonWrapper>
           <YellowLongButton

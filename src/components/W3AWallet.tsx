@@ -58,7 +58,7 @@ const W3AWallet = () => {
 
         const provider = new AlchemyProvider(
           "maticmum",
-          process.env.NEXT_PUBLIC_API_KEY
+          process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
         );
 
         const userInfo = await web3auth!.getUserInfo();
@@ -73,15 +73,6 @@ const W3AWallet = () => {
 
         if (typeof privateKey === "string") {
           const signer = new ethers.Wallet(privateKey, provider);
-          // dispatch(SET_PROVIDER_SIGNER({ provider: provider, signer: signer }));
-          // const wiggleFreeContract = new ethers.Contract(
-          //   wiggleFreeAddress,
-          //   ABI,
-          //   signer
-          // );
-          // const transaction_getUserList =
-          //   await wiggleFreeContract.getUserList();
-          // console.log(transaction_getUserList);
         }
         dispatch(
           SET_USER_LOGIN({
