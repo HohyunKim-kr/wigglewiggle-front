@@ -47,5 +47,3 @@ const Title = styled.div`
   font-weight: 400;
   line-height: 90%;
 `;
-
-//deploy용 추가
