@@ -3,100 +3,96 @@
 import colors from "@/styles/color";
 import { styled } from "styled-components";
 import { usePathname, useRouter } from "next/navigation";
+import React, { useState } from "react";
+
+import FreeCharacterModal from "@/components/modal/market-place-modal/character-modal/FreeCharacterModal";
+import PremiumCharacterModal from "@/components/modal/market-place-modal/character-modal/PremiumCharacterModal";
+import FreeClothesModal from "@/components/modal/market-place-modal/clothes-modal/FreeClothesModal";
+import PremiumClothesModal from "@/components/modal/market-place-modal/clothes-modal/PremiumClothesModal";
+import MarketCharacterBlock from "@/components/MarketCharacterBlock";
 
 const MarketPlaceFree = () => {
   const router = useRouter();
   const pathname = usePathname();
-  return (
-    <Container>
-      <Header>
-        <FreeOrPremium
-          onClick={() => router.push("/market-place/free")}
-          $isClicked={pathname === "/market-place/free"}
-        >
-          Free
-        </FreeOrPremium>
-        <Item style={{ fontSize: "50px", margin: "0" }}>|</Item>
-        <FreeOrPremium
-          onClick={() => router.push("/market-place/premium")}
-          $isClicked={pathname === "/market-place/premium"}
-        >
-          Premium
-        </FreeOrPremium>
-      </Header>
-      <MyProperty>
-        <MyCharacterContainer>
-          <Title style={{ marginTop: "0px" }}>
-            <Item>Character</Item>
-          </Title>
-          <MyCharacter style={{ marginLeft: "40px" }}>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Character>
-          </MyCharacter>
-        </MyCharacterContainer>
 
-        <MyClothesContainer>
-          <Title style={{ marginTop: "0px" }}>
-            <Item>Clothes</Item>
-          </Title>
-          <MyClothes style={{ marginLeft: "40px" }}>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>Free </Price>
-            </Clothes>
-          </MyClothes>
-        </MyClothesContainer>
-      </MyProperty>
-    </Container>
+  const [openedModal, setOpenedModal] = useState("");
+
+  return (
+    <>
+      {openedModal === "free" && (
+        <FreeCharacterModal onClose={() => setOpenedModal("")} />
+      )}
+      <Container>
+        <Header>
+          <FreeOrPremium
+            onClick={() => router.push("/market-place/free")}
+            $isClicked={pathname === "/market-place/free"}
+          >
+            Free
+          </FreeOrPremium>
+          <Item style={{ fontSize: "50px", margin: "0" }}>|</Item>
+          <FreeOrPremium
+            onClick={() => router.push("/market-place/premium")}
+            $isClicked={pathname === "/market-place/premium"}
+          >
+            Premium
+          </FreeOrPremium>
+        </Header>
+        <MyProperty>
+          <MyCharacterContainer>
+            <Title style={{ marginTop: "0px" }}>
+              <Item>Character</Item>
+            </Title>
+            <MyCharacter style={{ marginLeft: "40px" }}>
+              <MarketCharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("free")}
+              />
+            </MyCharacter>
+          </MyCharacterContainer>
+
+          <MyClothesContainer>
+            <Title style={{ marginTop: "0px" }}>
+              <Item>Clothes</Item>
+            </Title>
+            <MyClothes style={{ marginLeft: "40px" }}>
+              <Clothes>
+                <ClothesImg src="/images/cat.jpeg" alt="item1" />
+                <Name>Cat </Name>
+                <Price>Free </Price>
+              </Clothes>
+              <Clothes>
+                <ClothesImg src="/images/cat.jpeg" alt="item1" />
+                <Name>Cat </Name>
+                <Price>Free </Price>
+              </Clothes>
+              <Clothes>
+                <ClothesImg src="/images/cat.jpeg" alt="item1" />
+                <Name>Cat </Name>
+                <Price>Free </Price>
+              </Clothes>
+              <Clothes>
+                <ClothesImg src="/images/cat.jpeg" alt="item1" />
+                <Name>Cat </Name>
+                <Price>Free </Price>
+              </Clothes>
+              <Clothes>
+                <ClothesImg src="/images/cat.jpeg" alt="item1" />
+                <Name>Cat </Name>
+                <Price>Free </Price>
+              </Clothes>
+              <Clothes>
+                <ClothesImg src="/images/cat.jpeg" alt="item1" />
+                <Name>Cat </Name>
+                <Price>Free </Price>
+              </Clothes>
+            </MyClothes>
+          </MyClothesContainer>
+        </MyProperty>
+      </Container>
+    </>
   );
 };
 
