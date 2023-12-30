@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 const AfterLogin = () => {
   const router = useRouter();
+
   return (
     <Container>
       <Section>

@@ -30,7 +30,7 @@ const Header = () => {
         <Item
           style={{ marginRight: "100px" }}
           onClick={() => router.push("/market-place")}
-          $isClicked={pathname === "/market-place"}
+          $isClicked={pathname.startsWith("/market-place")}
         >
           Market Place
         </Item>

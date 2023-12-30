@@ -4,6 +4,15 @@ const nextConfig = {
     // ssr and displayName are configured by default
     styledComponents: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/market-place",
+        destination: "/market-place/free",
+        permanent: false,
+      },
+    ];
+  },
   env: {
     NEXT_PUBLIC_WEB3_AUTH_CLIENT_ID: process.env.WEB3_AUTH_CLIENT_ID,
     NEXT_PUBLIC_ALCHEMY_API_KEY: process.env.ALCHEMY_API_KEY,
@@ -12,3 +21,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+  

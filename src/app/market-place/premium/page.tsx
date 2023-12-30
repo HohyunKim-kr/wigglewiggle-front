@@ -1,38 +1,33 @@
 "use client";
 
+import colors from "@/styles/color";
 import { styled } from "styled-components";
 import { usePathname, useRouter } from "next/navigation";
 
-const My = () => {
+const MarketPlacePremium = () => {
   const router = useRouter();
-
+  const pathname = usePathname();
   return (
     <Container>
-      <MyProfile>
-        <Item
-          style={{
-            marginTop: "30px",
-            marginLeft: "50px",
-            marginBottom: "18px",
-          }}
+      <Header>
+        <FreeOrPremium
+          onClick={() => router.push("/market-place/free")}
+          $isClicked={pathname === "/market-place/free"}
         >
-          Profile
-        </Item>
-        <Profile>
-          <ProfileImg src="images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Wallet>0x123456789123456</Wallet>
-          <MyMoney>0000$</MyMoney>
-        </Profile>
-      </MyProfile>
-
+          Free
+        </FreeOrPremium>
+        <Item style={{ fontSize: "50px", margin: "0" }}>|</Item>
+        <FreeOrPremium
+          onClick={() => router.push("/market-place/premium")}
+          $isClicked={pathname === "/market-place/premium"}
+        >
+          Premium
+        </FreeOrPremium>
+      </Header>
       <MyProperty>
         <MyCharacterContainer>
           <Title style={{ marginTop: "0px" }}>
-            <Item>My Character</Item>
-            <Seemore onClick={() => router.push("/my/my-character")}>
-              See more
-            </Seemore>
+            <Item>Character</Item>
           </Title>
           <MyCharacter style={{ marginLeft: "40px" }}>
             <Character>
@@ -64,11 +59,8 @@ const My = () => {
         </MyCharacterContainer>
 
         <MyClothesContainer>
-          <Title style={{ paddingTop: "0px" }}>
-            <Item>My Clothes</Item>
-            <Seemore onClick={() => router.push("/my/my-clothes")}>
-              See more
-            </Seemore>
+          <Title style={{ marginTop: "0px" }}>
+            <Item>Clothes</Item>
           </Title>
           <MyClothes style={{ marginLeft: "40px" }}>
             <Clothes>
@@ -108,18 +100,37 @@ const My = () => {
   );
 };
 
-export default My;
+export default MarketPlacePremium;
 
 const Container = styled.div`
   height: calc(100vh - 100px);
   display: flex;
+  flex-direction: column;
 `;
-
-const MyProfile = styled.section``;
+const Header = styled.div`
+  width: fit-content;
+  height: fit-content;
+  padding: 30px;
+  padding-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+`;
+const FreeOrPremium = styled.button<{ $isClicked: boolean }>`
+  font-size: 45px;
+  color: #dbd8cf;
+  height: fit-content;
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  padding: 0 19px;
+  float: left;
+  color: ${(props) => (props.$isClicked ? colors.primary : colors.button)};
+  cursor: pointer;
+`;
 
 const MyProperty = styled.section`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 const MyCharacterContainer = styled.div`
   width: auto;
@@ -151,40 +162,6 @@ const Item = styled.div`
   margin-left: 35px;
 `;
 
-const Seemore = styled.button`
-  font-size: 30px;
-  color: #dbd8cf;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 18px;
-  border-color: #dbd8cf;
-  background: transparent;
-  padding: 0 19px;
-  float: left;
-  cursor: pointer;
-`;
-
-const Profile = styled.div`
-  border-radius: 18px;
-  background: #292929;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 250px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 50px;
-`;
-
-const ProfileImg = styled.img`
-  width: 264px;
-  height: 340px;
-  border-radius: 18px;
-  margin-top: 19px;
-`;
-
 const CharacterImg = styled.img`
   width: 190px;
   height: 255px;
@@ -204,19 +181,6 @@ const Name = styled.p`
   font-size: 30px;
   margin-top: 19px;
   margin-bottom: 10px;
-`;
-
-const Wallet = styled.p`
-  color: #b1b1b1;
-  font-size: 15px;
-  margin-top: 10px;
-`;
-
-const MyMoney = styled.p`
-  color: #ffeed6;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 25px;
 `;
 
 const Character = styled.div`
