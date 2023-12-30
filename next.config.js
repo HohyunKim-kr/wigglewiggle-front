@@ -15,6 +15,7 @@ const nextConfig = {
   },
   env: {
     NEXT_PUBLIC_WEB3_AUTH_CLIENT_ID: process.env.WEB3_AUTH_CLIENT_ID,
+    NEXT_PUBLIC_API_KEY: process.env.API_KEY,
   },
 };
 
