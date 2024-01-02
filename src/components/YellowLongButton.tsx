@@ -18,6 +18,9 @@ const YellowLongButton = ({ text, margin, onClickHandler }: Props) => {
 export default YellowLongButton;
 
 const Container = styled.button<{ $margin?: string }>`
+  :hover {
+    background-color: ${colors.primaryHover};
+  }
   padding: 16px 100px;
   font-size: 30px;
 
@@ -29,5 +32,6 @@ const Container = styled.button<{ $margin?: string }>`
   border-radius: 500px;
   background: ${colors.primary};
   margin: ${(props) => props.$margin};
+
   cursor: pointer;
 `;

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/store";
 
 interface IAuthState {
@@ -21,7 +21,15 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    SET_USER_LOGIN: (state, action) => {
+    SET_USER_LOGIN: (
+      state,
+      action: PayloadAction<{
+        address: string | null;
+        email: string | null;
+        nickname: string | null;
+        profileImage: string | null;
+      }>
+    ) => {
       const { address, email, nickname, profileImage } = action.payload;
 
       state.isLoggedIn = true;
