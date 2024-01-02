@@ -1,7 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import colors from "@/styles/color";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import styled from "styled-components";
 
-const PaintBoard = () => {
+type Props = {
+  isCharacterDressedUp: boolean;
+  setIsCharacterDressedUp: Dispatch<SetStateAction<boolean>>;
+  setCanvasImageUrl: Dispatch<SetStateAction<string>>;
+};
+
+const PaintBoard = ({
+  isCharacterDressedUp,
+  setIsCharacterDressedUp,
+  setCanvasImageUrl,
+}: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const [drawColor, setDrawColor] = useState<string>("black");
@@ -14,43 +31,27 @@ const PaintBoard = () => {
     const context = canvas?.getContext("2d");
 
     if (canvas && context) {
-      canvas.width = window.innerWidth;
-      canvas.height = 600;
-      context.fillStyle = "whitesmoke";
-      context.fillRect(0, 0, canvas.width, canvas.height);
+      canvas.width = 500; // 캔버스 너비 설정
+      canvas.height = 500; // 캔버스 높이 설정
+      // context.fillStyle = "whitesmoke";
+      // context.fillRect(0, 0, canvas.width, canvas.height);
+      context.clearRect(0, 0, canvas.width, canvas.height);
     }
   }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (isCharacterDressedUp && canvas) {
+      console.log("안녕");
+      setIsCharacterDressedUp(!isCharacterDressedUp);
+      const imageUrl = canvas.toDataURL("image/png");
+      setCanvasImageUrl(imageUrl);
+    }
+  }, [isCharacterDressedUp]);
 
   // Function to handle color change
   const handleColorChange = (event: any) => {
     setDrawColor(event.target.value);
-  };
-
-  const startDrawing = (
-    event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
-  ) => {
-    const rect = canvasRef.current?.getBoundingClientRect();
-    const context = canvasRef.current?.getContext("2d");
-    if (rect && context) {
-      setIsDrawing(true);
-      saveCurrentState(); // 현재 상태 저장
-      context.beginPath();
-      context.moveTo(event.clientX - rect.left, event.clientY - rect.top);
-    }
-  };
-
-  const draw = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    if (!isDrawing) return;
-    const context = canvasRef.current?.getContext("2d");
-    const rect = canvasRef.current?.getBoundingClientRect();
-    if (context && rect) {
-      context.lineTo(event.clientX - rect.left, event.clientY - rect.top);
-      context.strokeStyle = drawColor;
-      context.lineWidth = parseInt(drawWidth);
-      context.lineCap = "round";
-      context.lineJoin = "round";
-      context.stroke();
-    }
   };
 
   const stopDrawing = () => {
@@ -98,12 +99,46 @@ const PaintBoard = () => {
     setIndex(-1);
   };
 
+  const startDrawing = (
+    event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
+  ) => {
+    const canvas = canvasRef.current;
+    const context = canvasRef.current?.getContext("2d");
+    if (canvas && context) {
+      const rect = canvas.getBoundingClientRect();
+      setIsDrawing(true);
+      saveCurrentState(); // 현재 상태 저장
+      context.beginPath();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      context.moveTo(
+        (event.clientX - rect.left) * scaleX,
+        (event.clientY - rect.top) * scaleY
+      );
+    }
+  };
+
+  const draw = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    if (!isDrawing) return;
+    const canvas = canvasRef.current;
+    const context = canvasRef.current?.getContext("2d");
+    if (canvas && context) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      context.lineTo(
+        (event.clientX - rect.left) * scaleX,
+        (event.clientY - rect.top) * scaleY
+      );
+      context.stroke();
+    }
+  };
+
   const download = () => {
     const canvas = canvasRef.current;
     if (canvas) {
       canvas.toBlob((blob) => {
         if (blob) {
-          // 현재 시간을 기반으로 파일 이름 생성
           const timestamp = new Date().getTime();
           const a = document.createElement("a");
           document.body.appendChild(a);
@@ -112,7 +147,7 @@ const PaintBoard = () => {
           a.click();
           a.remove();
         }
-      });
+      }, "image/png");
     }
   };
 
@@ -146,13 +181,10 @@ const PaintBoard = () => {
 export default PaintBoard;
 
 export const StyledCanvas = styled.canvas`
-  width: 100%;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  width: 500px; // 너비를 500px로 설정
+  height: 500px; // 높이를 500px로 설정
   cursor: pointer;
-  background-color: whitesmoke;
+  border: 1px solid ${colors.white}; // 테두리 추가
 `;
 
 export const ToolBar = styled.div`
