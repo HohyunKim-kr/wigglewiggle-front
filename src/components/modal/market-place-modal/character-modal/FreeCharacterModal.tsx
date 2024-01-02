@@ -7,7 +7,20 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const FreeCharacterModal = ({ onClose }: ModalProps) => {
+type Props = {
+  imgSrc: string;
+  name: string;
+  tokenId: string;
+  price: string;
+};
+
+const FreeCharacterModal = ({
+  onClose,
+  imgSrc,
+  name,
+  tokenId,
+  price,
+}: ModalProps & Props) => {
   return (
     <>
       <ModalOverlay>
@@ -16,11 +29,11 @@ const FreeCharacterModal = ({ onClose }: ModalProps) => {
             <CloseButton onClick={onClose}>X</CloseButton>
           </div>
           <Inner>
-            <CharacterImg src="/images/cat.jpeg" alt="item1" />
+            <CharacterImg src={imgSrc} alt={name} />
             <Information>
-              <Name>Cat</Name>
-              <TokenId>123123123dfsdfsdf</TokenId>
-              <Price>Free</Price>
+              <Name>{name}</Name>
+              <TokenId>{tokenId}</TokenId>
+              <Price>{price}</Price>
               <Purchase>Purchase</Purchase>
             </Information>
           </Inner>
@@ -60,7 +73,7 @@ const CloseButton = styled.button`
   background: none;
   border: none;
   font-size: 40px;
-  color: primary;
+  color: ${colors.black};
   margin-left: auto;
   cursor: pointer;
 `;

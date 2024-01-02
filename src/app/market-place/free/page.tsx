@@ -6,10 +6,9 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import FreeCharacterModal from "@/components/modal/market-place-modal/character-modal/FreeCharacterModal";
-import PremiumCharacterModal from "@/components/modal/market-place-modal/character-modal/PremiumCharacterModal";
 import FreeClothesModal from "@/components/modal/market-place-modal/clothes-modal/FreeClothesModal";
-import PremiumClothesModal from "@/components/modal/market-place-modal/clothes-modal/PremiumClothesModal";
-import MarketCharacterBlock from "@/components/MarketCharacterBlock";
+import CharacterBlock from "@/components/CharacterBlock";
+import ClothesBlock from "@/components/ClothesBlock";
 
 const MarketPlaceFree = () => {
   const router = useRouter();
@@ -19,9 +18,25 @@ const MarketPlaceFree = () => {
 
   return (
     <>
-      {openedModal === "free" && (
-        <FreeCharacterModal onClose={() => setOpenedModal("")} />
+      {openedModal === "character" && (
+        <FreeCharacterModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dsdfsdfsdfsdfsdf"}
+          price={"Free"}
+          onClose={() => setOpenedModal("")}
+        />
       )}
+      {openedModal === "clothes" && (
+        <FreeClothesModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dsdfsdfsdfsdfsdf"}
+          price={"Free"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+
       <Container>
         <Header>
           <FreeOrPremium
@@ -44,12 +59,31 @@ const MarketPlaceFree = () => {
               <Item>Character</Item>
             </Title>
             <MyCharacter style={{ marginLeft: "40px" }}>
-              <MarketCharacterBlock
+              <CharacterBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"Free"}
-                onClickHandler={() => setOpenedModal("free")}
+                onClickHandler={() => setOpenedModal("character")}
               />
+                            <CharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("character")}
+              />
+              <CharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("character")}
+              />
+              <CharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("character")}
+              />
+
             </MyCharacter>
           </MyCharacterContainer>
 
@@ -58,36 +92,43 @@ const MarketPlaceFree = () => {
               <Item>Clothes</Item>
             </Title>
             <MyClothes style={{ marginLeft: "40px" }}>
-              <Clothes>
-                <ClothesImg src="/images/cat.jpeg" alt="item1" />
-                <Name>Cat </Name>
-                <Price>Free </Price>
-              </Clothes>
-              <Clothes>
-                <ClothesImg src="/images/cat.jpeg" alt="item1" />
-                <Name>Cat </Name>
-                <Price>Free </Price>
-              </Clothes>
-              <Clothes>
-                <ClothesImg src="/images/cat.jpeg" alt="item1" />
-                <Name>Cat </Name>
-                <Price>Free </Price>
-              </Clothes>
-              <Clothes>
-                <ClothesImg src="/images/cat.jpeg" alt="item1" />
-                <Name>Cat </Name>
-                <Price>Free </Price>
-              </Clothes>
-              <Clothes>
-                <ClothesImg src="/images/cat.jpeg" alt="item1" />
-                <Name>Cat </Name>
-                <Price>Free </Price>
-              </Clothes>
-              <Clothes>
-                <ClothesImg src="/images/cat.jpeg" alt="item1" />
-                <Name>Cat </Name>
-                <Price>Free </Price>
-              </Clothes>
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("clothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("clothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("clothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("clothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("clothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"Free"}
+                onClickHandler={() => setOpenedModal("clothes")}
+              />
+
             </MyClothes>
           </MyClothesContainer>
         </MyProperty>
@@ -156,54 +197,4 @@ const Item = styled.div`
   line-height: 90%;
   margin-bottom: 25px;
   margin-left: 35px;
-`;
-
-const CharacterImg = styled.img`
-  width: 190px;
-  height: 255px;
-  border-radius: 18px;
-  margin-top: 19px;
-`;
-
-const ClothesImg = styled.img`
-  width: 130px;
-  height: 130px;
-  border-radius: 18px;
-  margin-top: 19px;
-`;
-
-const Name = styled.p`
-  color: #ffffff;
-  font-size: 30px;
-  margin-top: 19px;
-  margin-bottom: 10px;
-`;
-
-const Character = styled.div`
-  border-radius: 18px;
-  background: #292929;
-  padding: 0 19px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 40px;
-  float: left;
-`;
-
-const Clothes = styled.div`
-  border-radius: 18px;
-  background: #292929;
-  padding: 0 19px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 40px;
-  float: left;
-`;
-
-const Price = styled.p`
-  color: #ffeed6;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 25px;
 `;

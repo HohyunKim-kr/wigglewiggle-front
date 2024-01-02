@@ -7,24 +7,19 @@ type Props = {
   onClickHandler: () => void;
 };
 
-const MarketCharacterBlock = ({
-  imgSrc,
-  name,
-  price,
-  onClickHandler,
-}: Props) => {
+const ClothesBlock = ({ imgSrc, name, price, onClickHandler }: Props) => {
   return (
-    <Character onClick={() => onClickHandler()}>
-      <CharacterImg src={imgSrc} alt={name} />
+    <Clothes onClick={() => onClickHandler()}>
+      <ClothesImg src={imgSrc} alt={name} />
       <Name>{name}</Name>
       <Price>{price} </Price>
-    </Character>
+    </Clothes>
   );
 };
 
-export default MarketCharacterBlock;
+export default ClothesBlock;
 
-const Character = styled.div`
+const Clothes = styled.div`
   border-radius: 18px;
   background: #292929;
   padding: 0 19px;
@@ -36,9 +31,9 @@ const Character = styled.div`
   cursor: pointer;
 `;
 
-const CharacterImg = styled.img`
-  width: 190px;
-  height: 255px;
+const ClothesImg = styled.img`
+  width: 130px;
+  height: 130px;
   border-radius: 18px;
   margin-top: 19px;
 `;
