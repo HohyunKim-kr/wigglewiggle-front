@@ -1,110 +1,166 @@
 "use client";
 
 import { styled } from "styled-components";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+
+import PremiumCharacterModal from "@/components/modal/my-modal/my-character-modal/PremiumCharacterModal";
+import PremiumClothesModal from "@/components/modal/market-place-modal/clothes-modal/PremiumClothesModal";
+import FreeCharacterModal from "@/components/modal/my-modal/my-character-modal/FreeCharacterModal";
+import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeClothesModal";
+
+import CharacterBlock from "@/components/CharacterBlock";
+import ClothesBlock from "@/components/ClothesBlock";
+import ProfileBlock from "@/components/ProfileBlock";
 
 const My = () => {
   const router = useRouter();
 
+  const [openedModal, setOpenedModal] = useState("");
+
   return (
-    <Container>
-      <MyProfile>
-        <Item
-          style={{
-            marginTop: "30px",
-            marginLeft: "50px",
-            marginBottom: "18px",
-          }}
-        >
-          Profile
-        </Item>
-        <Profile>
-          <ProfileImg src="images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Wallet>0x123456789123456</Wallet>
-          <MyMoney>0000$</MyMoney>
-        </Profile>
-      </MyProfile>
+    <>
+      {openedModal === "freeCharacter" && (
+        <FreeCharacterModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+      {openedModal === "freeClothes" && (
+        <FreeClothesModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+      {openedModal === "premiumCharacter" && (
+        <PremiumCharacterModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+      {openedModal === "premiumClothes" && (
+        <PremiumClothesModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
 
-      <MyProperty>
-        <MyCharacterContainer>
-          <Title style={{ marginTop: "0px" }}>
-            <Item>My Character</Item>
-            <Seemore onClick={() => router.push("/my/my-character")}>
-              See more
-            </Seemore>
-          </Title>
-          <MyCharacter style={{ marginLeft: "40px" }}>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Character>
-            <Character>
-              <CharacterImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Character>
-          </MyCharacter>
-        </MyCharacterContainer>
+      <Container>
+        <MyProfile>
+          <Item
+            style={{
+              marginTop: "30px",
+              marginLeft: "50px",
+              marginBottom: "18px",
+            }}
+          >
+            Profile
+          </Item>
+          <ProfileBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            wallet={"0x5165161684651561651"}
+            myMoney={"$000"}
+          />
+        </MyProfile>
 
-        <MyClothesContainer>
-          <Title style={{ paddingTop: "0px" }}>
-            <Item>My Clothes</Item>
-            <Seemore onClick={() => router.push("/my/my-clothes")}>
-              See more
-            </Seemore>
-          </Title>
-          <MyClothes style={{ marginLeft: "40px" }}>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Clothes>
-            <Clothes>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Name>Cat </Name>
-              <Price>0000$ </Price>
-            </Clothes>
-          </MyClothes>
-        </MyClothesContainer>
-      </MyProperty>
-    </Container>
+        <MyProperty>
+          <MyCharacterContainer>
+            <Title style={{ marginTop: "0px" }}>
+              <Item>My Character</Item>
+              <Seemore onClick={() => router.push("/my/my-character")}>
+                See more
+              </Seemore>
+            </Title>
+            <MyCharacter style={{ marginLeft: "40px" }}>
+              <CharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("freeCharacter")}
+              />
+              <CharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("freeCharacter")}
+              />
+              <CharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("premiumCharacter")}
+              />
+              <CharacterBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("premiumCharacter")}
+              />
+            </MyCharacter>
+          </MyCharacterContainer>
+
+          <MyClothesContainer>
+            <Title style={{ paddingTop: "0px" }}>
+              <Item>My Clothes</Item>
+              <Seemore onClick={() => router.push("/my/my-clothes")}>
+                See more
+              </Seemore>
+            </Title>
+            <MyClothes style={{ marginLeft: "40px" }}>
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("freeClothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("freeClothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("freeClothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("premiumClothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("premiumClothes")}
+              />
+              <ClothesBlock
+                imgSrc={"/images/cat.jpeg"}
+                name={"Cat"}
+                price={"$000"}
+                onClickHandler={() => setOpenedModal("premiumClothes")}
+              />
+            </MyClothes>
+          </MyClothesContainer>
+        </MyProperty>
+      </Container>
+    </>
   );
 };
 
@@ -162,88 +218,4 @@ const Seemore = styled.button`
   padding: 0 19px;
   float: left;
   cursor: pointer;
-`;
-
-const Profile = styled.div`
-  border-radius: 18px;
-  background: #292929;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 250px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 50px;
-`;
-
-const ProfileImg = styled.img`
-  width: 264px;
-  height: 340px;
-  border-radius: 18px;
-  margin-top: 19px;
-`;
-
-const CharacterImg = styled.img`
-  width: 190px;
-  height: 255px;
-  border-radius: 18px;
-  margin-top: 19px;
-`;
-
-const ClothesImg = styled.img`
-  width: 130px;
-  height: 130px;
-  border-radius: 18px;
-  margin-top: 19px;
-`;
-
-const Name = styled.p`
-  color: #ffffff;
-  font-size: 30px;
-  margin-top: 19px;
-  margin-bottom: 10px;
-`;
-
-const Wallet = styled.p`
-  color: #b1b1b1;
-  font-size: 15px;
-  margin-top: 10px;
-`;
-
-const MyMoney = styled.p`
-  color: #ffeed6;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 25px;
-`;
-
-const Character = styled.div`
-  border-radius: 18px;
-  background: #292929;
-  padding: 0 19px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 40px;
-  float: left;
-`;
-
-const Clothes = styled.div`
-  border-radius: 18px;
-  background: #292929;
-  padding: 0 19px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 40px;
-  float: left;
-`;
-
-const Price = styled.p`
-  color: #ffeed6;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 25px;
 `;

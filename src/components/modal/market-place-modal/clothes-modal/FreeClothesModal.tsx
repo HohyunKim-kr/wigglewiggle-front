@@ -4,31 +4,41 @@ import styled from "styled-components";
 import colors from "@/styles/color";
 
 interface ModalProps {
-  isOpen: boolean;
   onClose: () => void;
 }
 
-const FreeClothesModal = ({ isOpen, onClose }: ModalProps) => {
+type Props = {
+  imgSrc: string;
+  name: string;
+  tokenId: string;
+  price: string;
+};
+
+const FreeClothesModal = ({
+  onClose,
+  imgSrc,
+  name,
+  tokenId,
+  price,
+}: ModalProps & Props) => {
   return (
     <>
-      {isOpen && (
-        <ModalOverlay>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: "flex" }}>
-              <CloseButton onClick={onClose}>X</CloseButton>
-            </div>
-            <Inner>
-              <ClothesImg src="/images/cat.jpeg" alt="item1" />
-              <Information>
-                <Name>Cat</Name>
-                <TokenId>123123123dfsdfsdf</TokenId>
-                <Price>Free</Price>
-                <Purchase>Purchase</Purchase>
-              </Information>
-            </Inner>
-          </ModalContent>
-        </ModalOverlay>
-      )}
+      <ModalOverlay>
+        <ModalContent onClick={(e) => e.stopPropagation()}>
+          <div style={{ display: "flex" }}>
+            <CloseButton onClick={onClose}>X</CloseButton>
+          </div>
+          <Inner>
+            <ClothesImg src={imgSrc} alt={name} />
+            <Information>
+              <Name>{name}</Name>
+              <TokenId>{tokenId}</TokenId>
+              <Price>{price}</Price>
+              <Purchase>Purchase</Purchase>
+            </Information>
+          </Inner>
+        </ModalContent>
+      </ModalOverlay>
     </>
   );
 };
@@ -63,7 +73,7 @@ const CloseButton = styled.button`
   background: none;
   border: none;
   font-size: 40px;
-  color: primary;
+  color: ${colors.black};
   margin-left: auto;
   cursor: pointer;
 `;
