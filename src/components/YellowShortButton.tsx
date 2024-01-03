@@ -4,12 +4,22 @@ import { styled } from "styled-components";
 type Props = {
   text: string;
   margin?: string;
+  fontSize?: string;
   onClickHandler: () => void;
 };
 
-const YellowShortButton = ({ text, margin, onClickHandler }: Props) => {
+const YellowShortButton = ({
+  text,
+  margin,
+  fontSize,
+  onClickHandler,
+}: Props) => {
   return (
-    <Container $margin={margin} onClick={() => onClickHandler()}>
+    <Container
+      $margin={margin}
+      $fontSize={fontSize ? fontSize : "45px"}
+      onClick={() => onClickHandler()}
+    >
       {text}
     </Container>
   );
@@ -17,7 +27,7 @@ const YellowShortButton = ({ text, margin, onClickHandler }: Props) => {
 
 export default YellowShortButton;
 
-const Container = styled.div<{ $margin?: string }>`
+const Container = styled.div<{ $margin?: string; $fontSize: string }>`
   width: 430px;
   height: 100px;
   border-radius: 25px;
@@ -26,7 +36,7 @@ const Container = styled.div<{ $margin?: string }>`
   cursor: pointer;
 
   color: ${colors.black};
-  font-size: 45px;
+  font-size: ${(props) => props.$fontSize};
   font-style: normal;
   line-height: 90%;
 
