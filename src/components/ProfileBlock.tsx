@@ -1,3 +1,4 @@
+import colors from "@/styles/color";
 import { styled } from "styled-components";
 
 type Props = {
@@ -48,7 +49,9 @@ const Name = styled.p`
   margin-bottom: 10px;
 `;
 
-const Wallet = styled.p``;
+const Wallet = styled.p`
+  color: ${colors.white};
+`;
 
 const MyMoney = styled.p`
   color: #ffeed6;

@@ -1,14 +1,18 @@
 "use client";
 import { AlchemyProvider, ethers } from "ethers";
 import { styled } from "styled-components";
-import ABI from "../../abis/WiggleFree.json";
+import WiggleFreeABI from "../../abis/WiggleFree.json";
+import ERC6551RegistryABI from "../../abis/ERC6551Registry.json";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAddressState } from "@/redux/slice/authSlice";
 import YellowLongButton from "@/components/YellowLongButton";
 import { getNFTMetadata } from "@/lib/alchemy";
 
-const wiggleFreeAddress = "0xb275ba3BC567A8fbC4F812Fd39098A58952Fb887";
+const wiggleFreeAddress = "0xe4b4cC898529f42F198799EFFAEC09E3db389bBc";
+const registryAddress = "0x02101dfB77FDE026414827Fdc604ddAF224F0921";
+const implementationAddress = "0x2d25602551487c3f3354dd80d76d54383a243358"; //token bound org의 v2에 나와있음
+const salt = 0;
 
 const Game = () => {
   const provider = new AlchemyProvider(
@@ -20,9 +24,19 @@ const Game = () => {
     provider
   );
 
-  const userAddress = useSelector(getAddressState);
+  const userAddress: string | null = useSelector(getAddressState);
 
-  let wiggleFreeContract = new ethers.Contract(wiggleFreeAddress, ABI, signer);
+  let wiggleFreeContract = new ethers.Contract(
+    wiggleFreeAddress,
+    WiggleFreeABI,
+    signer
+  );
+
+  const RegistryContract = new ethers.Contract(
+    registryAddress,
+    ERC6551RegistryABI,
+    signer
+  );
 
   const [isFreeCharacterExist, setIsFreeCharacterExist] = useState(false);
   const [imageURL, setImageURL] = useState("");
@@ -34,9 +48,18 @@ const Game = () => {
     for (let i = 0; i < userList.length; i++) {
       if (userAddress === userList[i]) {
         setIsFreeCharacterExist(true);
+
         const tokenID = Number(
           await wiggleFreeContract.getTokenIdByAddress(userAddress)
         );
+        const tokenBoundAccount = await RegistryContract.account(
+          implementationAddress,
+          "0x13881",
+          wiggleFreeAddress,
+          tokenID,
+          salt
+        );
+        console.log("Token Bound Account", tokenBoundAccount);
 
         const gatewayURL = (
           await getNFTMetadata(
@@ -58,12 +81,42 @@ const Game = () => {
 
   const createFreeCharacter = async () => {
     //기본 캐릭터를 생성하는 함수
+    await wiggleFreeContract.connect(signer);
     const mintNFT = await wiggleFreeContract.safeMint(userAddress);
     const receiptMintNFT = await mintNFT.wait();
     if (receiptMintNFT.status === 1) {
       //성공
-      console.log(receiptMintNFT.hash);
       setIsFreeCharacterExist(true);
+      console.log(mintNFT);
+      const tokenID = Number(
+        await wiggleFreeContract.getTokenIdByAddress(userAddress)
+      );
+      const initData = "0x";
+      console.log(RegistryContract);
+
+      const createAccount = await RegistryContract.createAccount(
+        implementationAddress,
+        "0x13881",
+        wiggleFreeAddress,
+        tokenID,
+        salt,
+        initData
+      );
+      const receiptCreateAccount = await createAccount.wait();
+      console.log(receiptCreateAccount);
+      if (receiptCreateAccount.status === 1) {
+        console.log(
+          `createAccount call successful. Tx Hash: ${receiptCreateAccount.hash}`
+        );
+      }
+      const tokenBoundAccount = await RegistryContract.account(
+        implementationAddress,
+        "0x13881",
+        wiggleFreeAddress,
+        tokenID,
+        salt
+      );
+      console.log("Token Bound Account", tokenBoundAccount);
     }
   };
 
