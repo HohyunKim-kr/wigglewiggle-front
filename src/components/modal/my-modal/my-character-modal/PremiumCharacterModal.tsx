@@ -34,7 +34,7 @@ const PremiumCharacterModal = ({
               <Name>{name}</Name>
               <TokenId>{tokenId}</TokenId>
               <Price>{price}</Price>
-              <Purchase>Purchase</Purchase>
+              <ChangeOwner>ChangeOwner</ChangeOwner>
               <SellorSend>
                 <Sell>Sell</Sell>
                 <Send>Send</Send>
@@ -118,7 +118,7 @@ const Price = styled.p`
   margin-top: 35px;
   margin-bottom: 0px;
 `;
-const Purchase = styled.button`
+const ChangeOwner = styled.button`
   font-family: "ABeeZee";
   font-size: 30px;
   color: ${colors.black};
@@ -138,25 +138,26 @@ const SellorSend = styled.div`
 `;
 const Sell = styled.button`
   font-family: "ABeeZee";
-  font-size: 25px;
+  font-size: 28px;
   color: ${colors.black};
   height: fit-content;
   width: fit-content;
   border-radius: 18px;
   border-color: ${colors.primary};
   background: ${colors.primary};
-  padding: 0 16px;
+  padding: 0 30px;
   cursor: pointer;
 `;
 const Send = styled.button`
   font-family: "ABeeZee";
-  font-size: 25px;
+  font-size: 28px;
   color: ${colors.black};
   height: fit-content;
   width: fit-content;
   border-radius: 18px;
   border-color: ${colors.primary};
   background: ${colors.primary};
-  padding: 0 15px;
+  padding: 0 30px;
+  float: left;
   cursor: pointer;
 `;

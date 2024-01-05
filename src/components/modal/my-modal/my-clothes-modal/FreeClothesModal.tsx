@@ -34,7 +34,11 @@ const FreeClothesModal = ({
               <Name>{name}</Name>
               <TokenId>{tokenId}</TokenId>
               <Price>{price}</Price>
-              <Purchase>Purchase</Purchase>
+              <ChangeOwner>ChangeOwner</ChangeOwner>
+              <SellorSend>
+                <Sell>Sell</Sell>
+                <Send>Send</Send>
+              </SellorSend>
             </Information>
           </Inner>
         </ModalContent>
@@ -88,7 +92,6 @@ const ClothesImg = styled.img`
   height: 200px;
   border-radius: 18px;
   margin: 20px;
-  margin-top: 0px;
 `;
 
 const Information = styled.div`
@@ -110,7 +113,7 @@ const Price = styled.p`
   color: #6b6b6b;
   font-size: 25px;
 `;
-const Purchase = styled.button`
+const ChangeOwner = styled.button`
   font-family: "ABeeZee";
   font-size: 30px;
   color: ${colors.black};
@@ -120,7 +123,36 @@ const Purchase = styled.button`
   border-color: ${colors.primary};
   background: ${colors.primary};
   padding: 0 20px;
-  margin-bottom: 0px;
+  margin-bottom: 1px;
+  cursor: pointer;
+`;
+const SellorSend = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const Sell = styled.button`
+  font-family: "ABeeZee";
+  font-size: 28px;
+  color: ${colors.black};
+  height: fit-content;
+  width: fit-content;
+  border-radius: 18px;
+  border-color: ${colors.primary};
+  background: ${colors.primary};
+  padding: 0 30px;
+  margin-right: 2px;
+  cursor: pointer;
+`;
+const Send = styled.button`
+  font-family: "ABeeZee";
+  font-size: 28px;
+  color: ${colors.black};
+  height: fit-content;
+  width: fit-content;
+  border-radius: 18px;
+  border-color: ${colors.primary};
+  background: ${colors.primary};
+  padding: 0 30px;
   float: left;
   cursor: pointer;
 `;

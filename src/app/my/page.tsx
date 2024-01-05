@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import PremiumCharacterModal from "@/components/modal/my-modal/my-character-modal/PremiumCharacterModal";
-import PremiumClothesModal from "@/components/modal/market-place-modal/clothes-modal/PremiumClothesModal";
+import PremiumClothesModal from "@/components/modal/my-modal/my-clothes-modal/PremiumClothesModal";
 import FreeCharacterModal from "@/components/modal/my-modal/my-character-modal/FreeCharacterModal";
 import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeClothesModal";
 

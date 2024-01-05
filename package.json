@@ -26,7 +26,8 @@
     "redux": "^4.2.1",
     "styled-components": "^6.1.1",
     "styled-reset": "^4.5.1",
-    "web3": "^4.3.0"
+    "web3": "^4.3.0",
+    "@pinata/sdk": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
