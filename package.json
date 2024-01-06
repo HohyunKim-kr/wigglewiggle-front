@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.0.3",
+    "@pinata/sdk": "^2.1.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/redux-persist": "^4.3.1",
     "@walletconnect/sign-client": "^2.10.6",
@@ -20,14 +21,14 @@
     "ethers": "^6.4.2",
     "next": "14.0.3",
     "next-redux-wrapper": "^8.1.0",
+    "phaser": "^3.70.0",
     "react": "^18",
     "react-dom": "^18",
     "react-redux": "^8.1.3",
     "redux": "^4.2.1",
     "styled-components": "^6.1.1",
     "styled-reset": "^4.5.1",
-    "web3": "^4.3.0",
-    "@pinata/sdk": "^2.1.0"
+    "web3": "^4.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",

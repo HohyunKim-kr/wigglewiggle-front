@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAddressState } from "@/redux/slice/authSlice";
 import YellowLongButton from "@/components/YellowLongButton";
 import { getNFTMetadata } from "@/lib/alchemy";
+import WiggleGame from "@/components/game/Game";
 
 const wiggleFreeAddress = "0xe4b4cC898529f42F198799EFFAEC09E3db389bBc";
 const registryAddress = "0x02101dfB77FDE026414827Fdc604ddAF224F0921";
@@ -128,7 +129,8 @@ const Game = () => {
     <Container>
       {isFreeCharacterExist ? (
         <div>
-          <img src={imageURL} />
+          {/* <img src={imageURL} /> */}
+          <WiggleGame />
         </div>
       ) : (
         <ButtonWrapper>
