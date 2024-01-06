@@ -24,7 +24,7 @@ const My = () => {
         <FreeCharacterModal
           imgSrc={"/images/cat.jpeg"}
           name={"Cat"}
-          tokenId={"dksfldkfsdlkfkdjf"}
+          address={"dksfldkfsdlkfkdjf"}
           price={"$000"}
           onClose={() => setOpenedModal("")}
         />
@@ -42,7 +42,7 @@ const My = () => {
         <PremiumCharacterModal
           imgSrc={"/images/cat.jpeg"}
           name={"Cat"}
-          tokenId={"dksfldkfsdlkfkdjf"}
+          address={"dksfldkfsdlkfkdjf"}
           price={"$000"}
           onClose={() => setOpenedModal("")}
         />

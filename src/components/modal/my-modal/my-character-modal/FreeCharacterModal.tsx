@@ -10,7 +10,7 @@ interface ModalProps {
 type Props = {
   imgSrc: string;
   name: string;
-  tokenId: string;
+  address: string;
   price: string;
 };
 
@@ -18,7 +18,7 @@ const FreeCharacterModal = ({
   onClose,
   imgSrc,
   name,
-  tokenId,
+  address,
   price,
 }: ModalProps & Props) => {
   return (
@@ -32,9 +32,9 @@ const FreeCharacterModal = ({
             <CharacterImg src={imgSrc} alt={name} />
             <Information>
               <Name>{name}</Name>
-              <TokenId>{tokenId}</TokenId>
+              <Address>{address}</Address>
               <Price>{price}</Price>
-              <ChangeOwner>ChangeOwner</ChangeOwner>
+              <SeeClothes>See Clothes</SeeClothes>
               <SellorSend>
                 <Sell>Sell</Sell>
                 <Send>Send</Send>
@@ -105,7 +105,7 @@ const Name = styled.p`
   margin-top: 0;
   margin-bottom: 10px;
 `;
-const TokenId = styled.p`
+const Address = styled.p`
   color: #726755;
   font-size: 17px;
   margin-top: 8px;
@@ -117,16 +117,16 @@ const Price = styled.p`
   margin-top: 35px;
   margin-bottom: 0px;
 `;
-const ChangeOwner = styled.button`
+const SeeClothes = styled.button`
   font-family: "ABeeZee";
-  font-size: 30px;
+  font-size: 33px;
   color: ${colors.black};
   height: fit-content;
   width: fit-content;
   border-radius: 18px;
   border-color: ${colors.primary};
   background: ${colors.primary};
-  padding: 0 20px;
+  padding: 0 29px;
   cursor: pointer;
   margin-top: 30px;
   margin-bottom: 10px;

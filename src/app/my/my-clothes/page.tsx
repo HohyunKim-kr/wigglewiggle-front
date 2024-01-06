@@ -1,44 +1,89 @@
 "use client";
 
 import { styled } from "styled-components";
+import React, { useState } from "react";
+import PremiumClothesModal from "@/components/modal/my-modal/my-clothes-modal/PremiumClothesModal";
+import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeClothesModal";
+import ClothesBlock from "@/components/ClothesBlock";
 
 const FreeDetail = () => {
+  const [openedModal, setOpenedModal] = useState("");
+
   return (
-    <Container>
-      <Item style={{ marginTop: "30px" }}>My Clothes</Item>
-      <MyClothes style={{ marginLeft: "40px" }}>
-        <Clothes>
-          <ClothesImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Clothes>
-        <Clothes>
-          <ClothesImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Clothes>
-        <Clothes>
-          <ClothesImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Clothes>
-        <Clothes>
-          <ClothesImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Clothes>
-        <Clothes>
-          <ClothesImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Clothes>
-        <Clothes>
-          <ClothesImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Clothes>
-      </MyClothes>
-    </Container>
+    <>
+      {openedModal === "freeClothes" && (
+        <FreeClothesModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+      {openedModal === "premiumClothes" && (
+        <PremiumClothesModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+
+      <Container>
+        <Item style={{ marginTop: "30px" }}>My Clothes</Item>
+        <MyClothes style={{ marginLeft: "40px" }}>
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeClothes")}
+          />
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeClothes")}
+          />
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeClothes")}
+          />
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeClothes")}
+          />
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumClothes")}
+          />
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumClothes")}
+          />
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumClothes")}
+          />
+          <ClothesBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumClothes")}
+          />
+        </MyClothes>
+      </Container>
+    </>
   );
 };
 
@@ -50,7 +95,7 @@ const Container = styled.div`
 `;
 
 const Item = styled.div`
-  color: #f8d49e;
+  color: #d3d3d3;
   font-size: 50px;
   line-height: 90%;
   margin-bottom: 25px;

@@ -5,58 +5,67 @@ import Image from "next/image";
 import { useState } from "react";
 import colors from "@/styles/color";
 import YellowShortButton from "@/components/YellowShortButton";
+import SellThisClothing from "@/components/modal/sell-this-clothing";
+
 const Editor = () => {
   const [canvasImageUrl, setCanvasImageUrl] = useState("");
   const [isCharacterDressedUp, setIsCharacterDressedUp] = useState(false);
+  const [openedModal, setOpenedModal] = useState("");
 
   return (
-    <Container>
-      <TopWrapper>You can create clothes for Wiggles here.</TopWrapper>
-      <BottomWrapper>
-        <PaintBoardWrapper>
-          <PaintBoard
-            isCharacterDressedUp={isCharacterDressedUp}
-            setIsCharacterDressedUp={setIsCharacterDressedUp}
-            setCanvasImageUrl={setCanvasImageUrl}
-          />
-        </PaintBoardWrapper>
-        <ArrowImageWrapper onClick={() => setIsCharacterDressedUp(true)}>
-          <Image src="/arrow.png" alt="arrow" width={200} height={200} />
-          <ArrowImageText>Dress up a character</ArrowImageText>
-        </ArrowImageWrapper>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <MergedImageWrapper>
-            <BackgroundImage
-              src="/images/free_character.png"
-              alt="free character"
-              width={500}
-              height={500}
+    <>
+      {openedModal === "sell" && (
+        <SellThisClothing onClose={() => setOpenedModal("")} />
+      )}
+
+      <Container>
+        <TopWrapper>You can create clothes for Wiggles here.</TopWrapper>
+        <BottomWrapper>
+          <PaintBoardWrapper>
+            <PaintBoard
+              isCharacterDressedUp={isCharacterDressedUp}
+              setIsCharacterDressedUp={setIsCharacterDressedUp}
+              setCanvasImageUrl={setCanvasImageUrl}
             />
-            {canvasImageUrl !== "" && (
-              <MergedImage
-                src={canvasImageUrl}
-                alt="merged image"
+          </PaintBoardWrapper>
+          <ArrowImageWrapper onClick={() => setIsCharacterDressedUp(true)}>
+            <Image src="/arrow.png" alt="arrow" width={200} height={200} />
+            <ArrowImageText>Dress up a character</ArrowImageText>
+          </ArrowImageWrapper>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <MergedImageWrapper>
+              <BackgroundImage
+                src="/images/free_character.png"
+                alt="free character"
                 width={500}
                 height={500}
               />
+              {canvasImageUrl !== "" && (
+                <MergedImage
+                  src={canvasImageUrl}
+                  alt="merged image"
+                  width={500}
+                  height={500}
+                />
+              )}
+            </MergedImageWrapper>
+            {canvasImageUrl !== "" && (
+              <YellowShortButton
+                text="Sell this cloth"
+                fontSize="30px"
+                onClickHandler={() => setOpenedModal("sell")}
+              />
             )}
-          </MergedImageWrapper>
-          {canvasImageUrl !== "" && (
-            <YellowShortButton
-              text="Sell this cloth"
-              fontSize="30px"
-              onClickHandler={() => {}}
-            />
-          )}
-        </div>
-      </BottomWrapper>
-    </Container>
+          </div>
+        </BottomWrapper>
+      </Container>
+    </>
   );
 };
 

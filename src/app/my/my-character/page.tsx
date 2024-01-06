@@ -1,39 +1,88 @@
 "use client";
 
 import { styled } from "styled-components";
+import React, { useState } from "react";
+import PremiumCharacterModal from "@/components/modal/my-modal/my-character-modal/PremiumCharacterModal";
+import FreeCharacterModal from "@/components/modal/my-modal/my-character-modal/FreeCharacterModal";
+import CharacterBlock from "@/components/CharacterBlock";
 
 const FreeDetail = () => {
+  const [openedModal, setOpenedModal] = useState("");
+
   return (
-    <Container>
-      <Item style={{ marginTop: "30px" }}>My Character</Item>
-      <MyCharacter style={{ marginLeft: "40px" }}>
-        <Character>
-          <CharacterImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Character>
-        <Character>
-          <CharacterImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Character>
-        <Character>
-          <CharacterImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Character>
-        <Character>
-          <CharacterImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Character>
-        <Character>
-          <CharacterImg src="/images/cat.jpeg" alt="item1" />
-          <Name>Cat </Name>
-          <Price>0000$ </Price>
-        </Character>
-      </MyCharacter>
-    </Container>
+    <>
+      {openedModal === "freeCharacter" && (
+        <FreeCharacterModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          address={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+      {openedModal === "premiumCharacter" && (
+        <PremiumCharacterModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          address={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+      <Container>
+        <Item style={{ marginTop: "30px" }}>My Character</Item>
+        <MyCharacter style={{ marginLeft: "40px" }}>
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeCharacter")}
+          />
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeCharacter")}
+          />
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeCharacter")}
+          />
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("freeCharacter")}
+          />
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumCharacter")}
+          />
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumCharacter")}
+          />
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumCharacter")}
+          />
+          <CharacterBlock
+            imgSrc={"/images/cat.jpeg"}
+            name={"Cat"}
+            price={"$000"}
+            onClickHandler={() => setOpenedModal("premiumCharacter")}
+          />
+        </MyCharacter>
+      </Container>
+    </>
   );
 };
 
@@ -53,32 +102,3 @@ const Item = styled.div`
 `;
 
 const MyCharacter = styled.div``;
-const Character = styled.div`
-  border-radius: 18px;
-  background: #292929;
-  padding: 0 19px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 40px;
-  float: left;
-`;
-const CharacterImg = styled.img`
-  width: 190px;
-  height: 255px;
-  border-radius: 18px;
-  margin-top: 19px;
-`;
-
-const Name = styled.p`
-  color: #ffffff;
-  font-size: 30px;
-  margin-top: 19px;
-`;
-
-const Price = styled.p`
-  color: #ffeed6;
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 25px;
-`;
