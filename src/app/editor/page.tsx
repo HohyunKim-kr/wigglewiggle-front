@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import colors from "@/styles/color";
 import YellowShortButton from "@/components/YellowShortButton";
+import uploadImageToIPFS from "@/lib/imgToIPFS";
+import uploadToIPFS from "@/lib/imgToIPFS";
 const Editor = () => {
   const [canvasImageUrl, setCanvasImageUrl] = useState("");
   const [isCharacterDressedUp, setIsCharacterDressedUp] = useState(false);
@@ -51,7 +53,9 @@ const Editor = () => {
             <YellowShortButton
               text="Sell this cloth"
               fontSize="30px"
-              onClickHandler={() => {}}
+              onClickHandler={() => {
+                uploadToIPFS("테스트", canvasImageUrl);
+              }}
             />
           )}
         </div>
