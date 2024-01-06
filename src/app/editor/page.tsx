@@ -6,12 +6,13 @@ import { useState } from "react";
 import colors from "@/styles/color";
 import YellowShortButton from "@/components/YellowShortButton";
 import SellThisClothing from "@/components/modal/sell-this-clothing";
+import uploadFileToIPFS from "@/lib/uploadFileToIPFS";
 
 const Editor = () => {
   const [canvasImageUrl, setCanvasImageUrl] = useState("");
   const [isCharacterDressedUp, setIsCharacterDressedUp] = useState(false);
+  const [cid, setCid] = useState("");
   const [openedModal, setOpenedModal] = useState("");
-
   return (
     <>
       {openedModal === "sell" && (
