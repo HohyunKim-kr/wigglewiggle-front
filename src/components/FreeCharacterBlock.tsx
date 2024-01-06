@@ -7,19 +7,19 @@ type Props = {
   onClickHandler: () => void;
 };
 
-const ClothesBlock = ({ imgSrc, name, price, onClickHandler }: Props) => {
+const FreeCharacterBlock = ({ imgSrc, name, price, onClickHandler }: Props) => {
   return (
-    <Clothes onClick={() => onClickHandler()}>
-      <ClothesImg src={imgSrc} alt={name} />
+    <Character onClick={() => onClickHandler()}>
+      <CharacterImg src={imgSrc} alt={name} />
       <Name>{name}</Name>
       <Price>{price} </Price>
-    </Clothes>
+    </Character>
   );
 };
 
-export default ClothesBlock;
+export default FreeCharacterBlock;
 
-const Clothes = styled.div`
+const Character = styled.div`
   border-radius: 18px;
   background: #292929;
   padding: 0 19px;
@@ -31,9 +31,9 @@ const Clothes = styled.div`
   cursor: pointer;
 `;
 
-const ClothesImg = styled.img`
-  width: 130px;
-  height: 130px;
+const CharacterImg = styled.img`
+  width: 190px;
+  height: 255px;
   border-radius: 18px;
   margin-top: 19px;
 `;

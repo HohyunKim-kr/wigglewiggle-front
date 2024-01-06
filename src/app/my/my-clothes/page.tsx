@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import React, { useState } from "react";
 import PremiumClothesModal from "@/components/modal/my-modal/my-clothes-modal/PremiumClothesModal";
 import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeClothesModal";
-import ClothesBlock from "@/components/ClothesBlock";
+import ClothesBlock from "@/components/FreeClothesBlock";
 
 const FreeDetail = () => {
   const [openedModal, setOpenedModal] = useState("");

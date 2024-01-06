@@ -4,20 +4,32 @@ type Props = {
   imgSrc: string;
   name: string;
   price: string;
+  tier: string;
   onClickHandler: () => void;
 };
 
-const CharacterBlock = ({ imgSrc, name, price, onClickHandler }: Props) => {
+const PremiumCharacterBlock = ({
+  imgSrc,
+  name,
+  price,
+  tier,
+  onClickHandler,
+}: Props) => {
   return (
     <Character onClick={() => onClickHandler()}>
       <CharacterImg src={imgSrc} alt={name} />
-      <Name>{name}</Name>
-      <Price>{price} </Price>
+      <Inner>
+        <NamePrice>
+          <Name>{name}</Name>
+          <Price>{price}</Price>
+        </NamePrice>
+        <Tier>{tier}</Tier>
+      </Inner>
     </Character>
   );
 };
 
-export default CharacterBlock;
+export default PremiumCharacterBlock;
 
 const Character = styled.div`
   border-radius: 18px;
@@ -38,6 +50,10 @@ const CharacterImg = styled.img`
   margin-top: 19px;
 `;
 
+const Inner = styled.div``;
+
+const NamePrice = styled.div``;
+
 const Name = styled.p`
   color: #ffffff;
   font-size: 30px;
@@ -51,3 +67,5 @@ const Price = styled.p`
   margin-top: 10px;
   margin-bottom: 25px;
 `;
+
+const Tier = styled.div``;

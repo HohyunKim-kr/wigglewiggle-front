@@ -7,8 +7,8 @@ import React, { useState } from "react";
 
 import PremiumCharacterModal from "@/components/modal/market-place-modal/character-modal/PremiumCharacterModal";
 import PremiumClothesModal from "@/components/modal/market-place-modal/clothes-modal/PremiumClothesModal";
-import CharacterBlock from "@/components/CharacterBlock";
-import ClothesBlock from "@/components/ClothesBlock";
+import PremiumCharacterBlock from "@/components/PremiumCharacterBlock";
+import PremiumClothesBlock from "@/components/PremiumClothesBlock";
 
 const MarketPlacePremium = () => {
   const router = useRouter();
@@ -19,20 +19,22 @@ const MarketPlacePremium = () => {
   return (
     <>
       {openedModal === "character" && (
-        <PremiumCharacterModal 
-        imgSrc={"/images/cat.jpeg"}
-        name={"Cat"}
-        tokenId={"dksfldkfsdlkfkdjf"}
-        price={"$000"}
-        onClose={() => setOpenedModal("")} />
+        <PremiumCharacterModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
       )}
       {openedModal === "clothes" && (
-        <PremiumClothesModal 
-        imgSrc={"/images/cat.jpeg"}
-        name={"Cat"}
-        tokenId={"dksfldkfsdlkfkdjf"}
-        price={"$000"}
-        onClose={() => setOpenedModal("")} />
+        <PremiumClothesModal
+          imgSrc={"/images/cat.jpeg"}
+          name={"Cat"}
+          tokenId={"dksfldkfsdlkfkdjf"}
+          price={"$000"}
+          onClose={() => setOpenedModal("")}
+        />
       )}
 
       <Container>
@@ -57,31 +59,34 @@ const MarketPlacePremium = () => {
               <Item>Character</Item>
             </Title>
             <MyCharacter style={{ marginLeft: "40px" }}>
-              <CharacterBlock
+              <PremiumCharacterBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("character")}
               />
-              <CharacterBlock
+              <PremiumCharacterBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("character")}
               />
-              <CharacterBlock
+              <PremiumCharacterBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("character")}
               />
-              <CharacterBlock
+              <PremiumCharacterBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("character")}
               />
-
             </MyCharacter>
           </MyCharacterContainer>
 
@@ -90,49 +95,55 @@ const MarketPlacePremium = () => {
               <Item>Clothes</Item>
             </Title>
             <MyClothes style={{ marginLeft: "40px" }}>
-              <ClothesBlock
+              <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
+                tier={"A+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-
             </MyClothes>
           </MyClothesContainer>
         </MyProperty>

@@ -5,10 +5,8 @@ import { styled } from "styled-components";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-import FreeCharacterModal from "@/components/modal/market-place-modal/character-modal/FreeCharacterModal";
 import FreeClothesModal from "@/components/modal/market-place-modal/clothes-modal/FreeClothesModal";
-import CharacterBlock from "@/components/CharacterBlock";
-import ClothesBlock from "@/components/ClothesBlock";
+import FreeClothesBlock from "@/components/FreeClothesBlock";
 
 const MarketPlaceFree = () => {
   const router = useRouter();
@@ -18,15 +16,6 @@ const MarketPlaceFree = () => {
 
   return (
     <>
-      {openedModal === "character" && (
-        <FreeCharacterModal
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
-          tokenId={"dsdfsdfsdfsdfsdf"}
-          price={"Free"}
-          onClose={() => setOpenedModal("")}
-        />
-      )}
       {openedModal === "clothes" && (
         <FreeClothesModal
           imgSrc={"/images/cat.jpeg"}
@@ -54,81 +43,47 @@ const MarketPlaceFree = () => {
           </FreeOrPremium>
         </Header>
         <MyProperty>
-          <MyCharacterContainer>
-            <Title style={{ marginTop: "0px" }}>
-              <Item>Character</Item>
-            </Title>
-            <MyCharacter style={{ marginLeft: "40px" }}>
-              <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"Free"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
-                            <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"Free"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
-              <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"Free"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
-              <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"Free"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
-
-            </MyCharacter>
-          </MyCharacterContainer>
-
           <MyClothesContainer>
             <Title style={{ marginTop: "0px" }}>
               <Item>Clothes</Item>
             </Title>
             <MyClothes style={{ marginLeft: "40px" }}>
-              <ClothesBlock
+              <FreeClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"Free"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <FreeClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"Free"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <FreeClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"Free"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <FreeClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"Free"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <FreeClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"Free"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-              <ClothesBlock
+              <FreeClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"Free"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
-
             </MyClothes>
           </MyClothesContainer>
         </MyProperty>
@@ -169,16 +124,11 @@ const MyProperty = styled.section`
   display: flex;
   flex-direction: row;
 `;
-const MyCharacterContainer = styled.div`
-  width: auto;
-  height: auto;
-`;
 const MyClothesContainer = styled.div`
   width: auto;
   height: auto;
 `;
 
-const MyCharacter = styled.div``;
 const MyClothes = styled.div``;
 
 const Title = styled.div`

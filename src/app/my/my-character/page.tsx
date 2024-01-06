@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import React, { useState } from "react";
 import PremiumCharacterModal from "@/components/modal/my-modal/my-character-modal/PremiumCharacterModal";
 import FreeCharacterModal from "@/components/modal/my-modal/my-character-modal/FreeCharacterModal";
-import CharacterBlock from "@/components/CharacterBlock";
+import CharacterBlock from "@/components/FreeCharacterBlock";
 
 const FreeDetail = () => {
   const [openedModal, setOpenedModal] = useState("");

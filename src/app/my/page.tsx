@@ -9,8 +9,8 @@ import PremiumClothesModal from "@/components/modal/my-modal/my-clothes-modal/Pr
 import FreeCharacterModal from "@/components/modal/my-modal/my-character-modal/FreeCharacterModal";
 import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeClothesModal";
 
-import CharacterBlock from "@/components/CharacterBlock";
-import ClothesBlock from "@/components/ClothesBlock";
+import CharacterBlock from "@/components/FreeCharacterBlock";
+import ClothesBlock from "@/components/FreeClothesBlock";
 import ProfileBlock from "@/components/ProfileBlock";
 
 const My = () => {
