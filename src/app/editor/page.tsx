@@ -5,12 +5,11 @@ import Image from "next/image";
 import { useState } from "react";
 import colors from "@/styles/color";
 import YellowShortButton from "@/components/YellowShortButton";
-import uploadImageToIPFS from "@/lib/imgToIPFS";
-import uploadToIPFS from "@/lib/imgToIPFS";
+import uploadFileToIPFS from "@/lib/uploadFileToIPFS";
 const Editor = () => {
   const [canvasImageUrl, setCanvasImageUrl] = useState("");
   const [isCharacterDressedUp, setIsCharacterDressedUp] = useState(false);
-
+  const [cid, setCid] = useState("");
   return (
     <Container>
       <TopWrapper>You can create clothes for Wiggles here.</TopWrapper>
@@ -53,7 +52,11 @@ const Editor = () => {
             <YellowShortButton
               text="Sell this cloth"
               fontSize="30px"
-              onClickHandler={() => {}}
+              onClickHandler={async () => {
+                const ipfsHash = await uploadFileToIPFS(canvasImageUrl);
+                console.log(ipfsHash);
+                setCid(ipfsHash);
+              }}
             />
           )}
         </div>

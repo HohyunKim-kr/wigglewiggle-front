@@ -42,7 +42,6 @@ const PaintBoard = ({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (isCharacterDressedUp && canvas) {
-      console.log("안녕");
       setIsCharacterDressedUp(!isCharacterDressedUp);
       const imageUrl = canvas.toDataURL("image/png");
       setCanvasImageUrl(imageUrl);

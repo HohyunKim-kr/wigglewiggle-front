@@ -52,14 +52,14 @@ export default function Game() {
         const { player1Score: p1, player2Score: p2 } = data;
         player1Score = p2;
         player2Score = p1;
-        console.log(player1Score, player2Score);
+        // console.log(player1Score, player2Score);
         scoreText.setText(
           `Player 1: ${player1Score} - Player 2: ${player2Score}`
         );
       });
 
       socketIo.on("otherPlayerMoved", (data: any) => {
-        console.log(data);
+        // console.log(data);
         opponentPaddle.x = data.x;
         opponentPaddle.y = data.y;
       });
@@ -101,7 +101,7 @@ export default function Game() {
         .setCollideWorldBounds(true)
         .setBounce(1);
 
-      console.log(puck.width);
+      // console.log(puck.width);
 
       this.physics.add.collider(opponentPaddle, puck, () => {
         const diffX = puck.x - opponentPaddle.x; // 퍽과 패들의 x축 거리 계산
@@ -192,7 +192,7 @@ export default function Game() {
         scoreText.setText(
           `Player 1: ${player1Score} - Player 2: ${player2Score}`
         );
-        console.log("dsfsdfsd");
+        // console.log("dsfsdfsd");
         socketIo.emit("playerScored", { player1Score, player2Score });
         if (player1Score === 3 || player2Score === 3) {
           endGame();
@@ -223,8 +223,8 @@ export default function Game() {
     }
 
     function update(this: Phaser.Scene) {
-      console.log("Ss");
-      console.log(this);
+      // console.log("Ss");
+      // console.log(this);
 
       socketIo.emit("playerPosition", {
         x: 1200 - (myPaddle.x - 510),
