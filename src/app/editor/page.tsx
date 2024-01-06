@@ -53,9 +53,7 @@ const Editor = () => {
             <YellowShortButton
               text="Sell this cloth"
               fontSize="30px"
-              onClickHandler={() => {
-                uploadToIPFS("테스트", canvasImageUrl);
-              }}
+              onClickHandler={() => {}}
             />
           )}
         </div>
