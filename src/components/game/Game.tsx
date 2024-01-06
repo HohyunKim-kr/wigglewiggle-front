@@ -115,7 +115,7 @@ export default function Game() {
       const goalHeight = 400; // 골대 높이
       // Create red and blue goals
       const redGoal = this.physics.add
-        .sprite(30, game.config.height / 2, "paddle")
+        .sprite(30, Number(game.config.height) / 2, "paddle")
         .setDisplaySize(50, 400)
         .setSize(500, 500)
         .setTint(0xff0000)
@@ -123,7 +123,11 @@ export default function Game() {
       // .setSize(50, 400); // 충돌 영역 설정
 
       const blueGoal = this.physics.add
-        .sprite(game.config.width - 30, game.config.height / 2, "paddle")
+        .sprite(
+          Number(game.config.width) - 30,
+          Number(game.config.height) / 2,
+          "paddle"
+        )
         .setDisplaySize(50, 400)
         .setSize(500, 500)
         .setTint(0x0000ff)
@@ -132,7 +136,8 @@ export default function Game() {
 
       scoreText = this.add.text(16, 16, "Player 1: 0 - Player 2: 0", {
         fontSize: "32px",
-        fill: "#fff", // 흰색으로 변경
+        color: "#fff",
+        // fill: "#fff", // 흰색으로 변경
       });
 
       this.physics.add.collider(redGoal, puck, () => {
@@ -175,12 +180,12 @@ export default function Game() {
       keyboard.on("keyup", function (event: KeyboardEvent) {
         if (
           (event.key === "ArrowLeft" || event.key === "ArrowRight") &&
-          myPaddle.body.velocity.x !== 0 // 현재 x 속도가 0이 아닌 경우에만 x 속도를 0으로 설정
+          Number(myPaddle.body!.velocity.x) !== 0 // 현재 x 속도가 0이 아닌 경우에만 x 속도를 0으로 설정
         ) {
           myPaddle.setVelocityX(0);
         } else if (
           (event.key === "ArrowUp" || event.key === "ArrowDown") &&
-          myPaddle.body.velocity.y !== 0 // 현재 y 속도가 0이 아닌 경우에만 y 속도를 0으로 설정
+          Number(myPaddle.body!.velocity.y) !== 0 // 현재 y 속도가 0이 아닌 경우에만 y 속도를 0으로 설정
         ) {
           myPaddle.setVelocityY(0);
         }
@@ -201,14 +206,11 @@ export default function Game() {
       function endGame() {
         // 게임 종료 처리
         const winner = player1Score === 3 ? "Player 1" : "Player 2";
-        const endText = game.add.text(
-          game.config.width / 2,
-          game.config.height / 2,
+        const endText = (game as any).add.text(
+          Number(game.config.width) / 2,
+          Number(game.config.height) / 2,
           `${winner} wins!`,
           {
-            fontSize: "48px",
-            fill: "#fff",
-
             fontSize: "48px",
             fill: "#fff",
           }
@@ -217,7 +219,10 @@ export default function Game() {
         // 여기서 게임을 멈추거나 다른 작업을 할 수 있습니다.
       }
       const resetPuck = () => {
-        puck.setPosition(game.config.width / 2, game.config.height / 2);
+        puck.setPosition(
+          Number(game.config.width) / 2,
+          Number(game.config.height) / 2
+        );
         puck.setVelocity(0, 0);
       };
     }
