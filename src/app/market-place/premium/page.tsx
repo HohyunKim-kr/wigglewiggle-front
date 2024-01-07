@@ -106,14 +106,14 @@ const MarketPlacePremium = () => {
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
-                tier={"A+"}
+                tier={"B+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
               <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
-                tier={"A+"}
+                tier={"C+"}
                 onClickHandler={() => setOpenedModal("clothes")}
               />
               <PremiumClothesBlock

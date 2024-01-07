@@ -1,4 +1,9 @@
 import { styled } from "styled-components";
+import React from "react";
+
+interface TierProps {
+  text: string;
+}
 
 type Props = {
   imgSrc: string;
@@ -23,7 +28,7 @@ const PremiumCharacterBlock = ({
           <Name>{name}</Name>
           <Price>{price}</Price>
         </NamePrice>
-        <Tier>{tier}</Tier>
+        <Tier text={tier}>{tier}</Tier>
       </Inner>
     </Character>
   );
@@ -50,9 +55,17 @@ const CharacterImg = styled.img`
   margin-top: 19px;
 `;
 
-const Inner = styled.div``;
+const Inner = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
-const NamePrice = styled.div``;
+const NamePrice = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Name = styled.p`
   color: #ffffff;
@@ -68,4 +81,14 @@ const Price = styled.p`
   margin-bottom: 25px;
 `;
 
-const Tier = styled.div``;
+const Tier = styled.div<TierProps>`
+  color: ${(props) => {
+    return props.text === "A+"
+      ? "#fac679"
+      : props.text === "B+"
+      ? "#afafaf"
+      : "#92611d";
+  }};
+  font-size: 50px;
+  margin-left: 40px;
+`;

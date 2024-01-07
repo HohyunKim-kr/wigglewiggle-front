@@ -15,6 +15,14 @@ const Header = () => {
       <div style={{ display: "flex" }}>
         <Item
           style={{ marginRight: "100px" }}
+          onClick={() => router.push("/dashboard")}
+          $isClicked={pathname === "/dashboard"}
+        >
+          DashBoard
+        </Item>
+
+        <Item
+          style={{ marginRight: "100px" }}
           onClick={() => router.push("/game")}
           $isClicked={pathname === "/game"}
         >

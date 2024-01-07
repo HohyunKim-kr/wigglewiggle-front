@@ -83,7 +83,11 @@ const Price = styled.p`
 
 const Tier = styled.div<TierProps>`
   color: ${(props) => {
-    return props.text === "A+" ? "#" : props.text === "B+" ? "blue" : "black";
+    return props.text === "A+"
+      ? "#fac679"
+      : props.text === "B+"
+      ? "#afafaf"
+      : "#92611d";
   }};
   font-size: 45px;
   margin-left: 20px;
