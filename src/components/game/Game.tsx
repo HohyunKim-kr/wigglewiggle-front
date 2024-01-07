@@ -13,7 +13,7 @@ export default function Game() {
   const [socketIo, setSocketIo] = useState<any | null>(null);
 
   if (!socketIo) {
-    const _socketIo = io("http://127.0.0.1:4000");
+    const _socketIo = io("http://15.164.165.151");
     setSocketIo(_socketIo);
   }
   useEffect(() => {
