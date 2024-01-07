@@ -22,10 +22,11 @@ const SellThisClothing = ({ onClose }: ModalProps) => {
           </div>
           <Inner>
             <Title>Sell This Clothing</Title>
+            <ClothesGrade>A</ClothesGrade>
             <InputWrapper>
               <ClothesName>
                 <InnerTitle>name : </InnerTitle>
-                <Input />
+                <Input type="text" />
               </ClothesName>
               <ClothesPrice>
                 <InnerTitle>price : </InnerTitle>
@@ -33,13 +34,14 @@ const SellThisClothing = ({ onClose }: ModalProps) => {
                   value={userInputPrice}
                   onChange={handleInputChange}
                   style={{ marginLeft: "17px" }}
+                  type="number"
                 />
                 <Matic>Matic</Matic>
               </ClothesPrice>
             </InputWrapper>
             <Explanation>
               <p style={{ margin: "0" }}>
-                It costs ({userInputPrice})Matic to sell this clothing
+                It costs 50 Matic to sell this clothing
               </p>
               <p style={{ margin: "0" }}>on the marketplace</p>
             </Explanation>
@@ -97,6 +99,13 @@ const Title = styled.div`
   margin-bottom: 20px;
 `;
 
+const ClothesGrade = styled.div`
+  font-size: 100px;
+  font-weight: 600;
+  color: red;
+  margin-bottom: 10px;
+`;
+
 const InputWrapper = styled.div`
   margin-bottom: 20px;
   display: flex;
@@ -125,7 +134,7 @@ const InnerTitle = styled.div`
 const Input = styled.input`
   margin-left: 8px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
   border: 1px solid #000000;
   border-radius: 5px;
   outline: none;

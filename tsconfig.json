@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/api/files.js",
-    "src/app/api/router.js"
+    "src/app/api/router.js",
+    "src/components/game/Game.jsx"
   ],
   "exclude": ["node_modules"]
 }
