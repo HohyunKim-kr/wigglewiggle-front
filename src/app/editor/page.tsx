@@ -58,7 +58,7 @@ const Editor = () => {
             </MergedImageWrapper>
             {canvasImageUrl !== "" && (
               <YellowShortButton
-                text="Sell this cloth"
+                text="Sell this clothing"
                 fontSize="30px"
                 onClickHandler={() => setOpenedModal("sell")}
               />
