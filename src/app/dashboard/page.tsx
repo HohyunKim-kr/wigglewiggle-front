@@ -1,7 +1,7 @@
 "use client";
 
 import { styled } from "styled-components";
-import React, { CSSProperties } from "react";
+import React from "react";
 import DashBoardBlock from "@/components/DashBoardBlock";
 
 const DashBoard = () => {
