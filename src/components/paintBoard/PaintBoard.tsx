@@ -12,12 +12,14 @@ type Props = {
   isCharacterDressedUp: boolean;
   setIsCharacterDressedUp: Dispatch<SetStateAction<boolean>>;
   setCanvasImageUrl: Dispatch<SetStateAction<string>>;
+  openedModal: string;
 };
 
 const PaintBoard = ({
   isCharacterDressedUp,
   setIsCharacterDressedUp,
   setCanvasImageUrl,
+  openedModal,
 }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState<boolean>(false);
@@ -47,6 +49,12 @@ const PaintBoard = ({
       setCanvasImageUrl(imageUrl);
     }
   }, [isCharacterDressedUp]);
+
+  useEffect(() => {
+    if (openedModal == "success") {
+      clearCanvas();
+    }
+  }, [openedModal]);
 
   // Function to handle color change
   const handleColorChange = (event: any) => {
@@ -90,9 +98,9 @@ const PaintBoard = ({
     const canvas = canvasRef.current;
     const context = canvasRef.current?.getContext("2d");
     if (canvas && context) {
-      context.fillStyle = "whitesmoke";
+      // context.fillStyle = "whitesmoke";
+      // context.fillRect(0, 0, canvas.width, canvas.height);
       context.clearRect(0, 0, canvas.width, canvas.height);
-      context.fillRect(0, 0, canvas.width, canvas.height);
     }
     setRestoreArray([]);
     setIndex(-1);

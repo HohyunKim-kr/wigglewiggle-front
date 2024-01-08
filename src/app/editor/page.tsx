@@ -2,21 +2,130 @@
 import PaintBoard from "@/components/paintBoard/PaintBoard";
 import { styled } from "styled-components";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import colors from "@/styles/color";
 import YellowShortButton from "@/components/YellowShortButton";
 import SellThisClothing from "@/components/modal/sell-this-clothing";
 import uploadFileToIPFS from "@/lib/uploadFileToIPFS";
+import { AlchemyProvider, ethers } from "ethers";
+import WiggleClothingABI from "../../abis/WiggleClothing.json";
+import { useWeb3Auth } from "@/context/Web3AuthContext";
+import { useSelector } from "react-redux";
+import { getAddressState } from "@/redux/slice/authSlice";
+import SuccessModal from "@/components/modal/SuccessModal";
+import InProgressModal from "@/components/modal/InprogressModal";
+
+const wiggleClothingAddress = "0x39F648e6Ae8DC7d4cACfbACeC030305a2225576e";
+const contractOwnerAddress = "0xD32a40D299E58d9212a6039AE230dbb52E74e47B";
 
 const Editor = () => {
   const [canvasImageUrl, setCanvasImageUrl] = useState("");
   const [isCharacterDressedUp, setIsCharacterDressedUp] = useState(false);
-  const [cid, setCid] = useState("");
   const [openedModal, setOpenedModal] = useState("");
+  const [isCreationConfirmed, setIsCreationConfirmed] = useState(false);
+  const [clothingName, setClothingName] = useState("");
+  const [clothingPrice, setClothingPrice] = useState(0);
+  const web3auth = useWeb3Auth();
+
+  const userAddress: string | null = useSelector(getAddressState);
+
+  const tokenMintedABI = WiggleClothingABI.find(
+    (item) => item.name === "TokenMinted" && item.type === "event"
+  );
+
+  const provider = new AlchemyProvider(
+    "maticmum",
+    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
+  );
+
+  const contractOwner = new ethers.Wallet( //contract 소유자가 직접 트랜잭션을 보내야함.
+    process.env.NEXT_PUBLIC_PRIVATE_KEY!,
+    provider
+  );
+
+  let wiggleClothingContract = new ethers.Contract(
+    wiggleClothingAddress,
+    WiggleClothingABI,
+    contractOwner
+  );
+
+  useEffect(() => {
+    async function createClothing() {
+      // Clothing NFT mint
+      const mintClothing = await wiggleClothingContract.safeMint(
+        contractOwnerAddress
+      );
+      const receiptMintClothing = await mintClothing.wait();
+      const ITokenMinted = new ethers.Interface([tokenMintedABI!]);
+      const tokenId = Number(
+        ITokenMinted.parseLog(receiptMintClothing.logs[1])?.args[1]
+      );
+
+      // clothing URI IPFS 등록
+      const ipfsHash = await uploadFileToIPFS(canvasImageUrl);
+      console.log(ipfsHash);
+
+      // Clothing 정보 등록
+      const privateKey = await web3auth!.provider!.request({
+        method: "private_key",
+      });
+      const userWallet = new ethers.Wallet(privateKey as string, provider);
+      const userConnectedWiggleClothingContract = new ethers.Contract(
+        wiggleClothingAddress,
+        WiggleClothingABI,
+        userWallet
+      );
+      const options = { value: ethers.parseEther("0.1") };
+      const registerClothingInfo =
+        await userConnectedWiggleClothingContract.registerClothingInfo(
+          userAddress,
+          ipfsHash,
+          clothingName,
+          clothingPrice,
+          tokenId,
+          options
+        );
+      const receiptRegisterClothingInfo = await registerClothingInfo.wait();
+      console.log(receiptRegisterClothingInfo);
+      setOpenedModal("success");
+    }
+
+    if (isCreationConfirmed) {
+      console.log(clothingName, clothingPrice);
+      setOpenedModal("inProgess");
+      createClothing();
+      setClothingName("");
+      setClothingPrice(0);
+      setCanvasImageUrl("");
+    }
+  }, [isCreationConfirmed]);
+
   return (
     <>
       {openedModal === "sell" && (
-        <SellThisClothing onClose={() => setOpenedModal("")} />
+        <SellThisClothing
+          onClose={() => setOpenedModal("")}
+          clothingName={clothingName}
+          setClothingName={setClothingName}
+          clothingPrice={clothingPrice}
+          setClothingPrice={setClothingPrice}
+          setIsCreationConfirmed={setIsCreationConfirmed}
+        />
+      )}
+      {openedModal === "inProgess" && (
+        <InProgressModal>
+          <ClothesGrade>A</ClothesGrade>
+          <InProgressModalMessage>Creating clothing...</InProgressModalMessage>
+        </InProgressModal>
+      )}
+      {openedModal === "success" && (
+        <SuccessModal
+          onClose={() => setOpenedModal("")}
+          OKButtonHandler={() => setOpenedModal("")}
+        >
+          <ClothesGrade>A</ClothesGrade>
+          <SuccessModalMessage>Clothing has been created!</SuccessModalMessage>
+        </SuccessModal>
       )}
 
       <Container>
@@ -27,6 +136,7 @@ const Editor = () => {
               isCharacterDressedUp={isCharacterDressedUp}
               setIsCharacterDressedUp={setIsCharacterDressedUp}
               setCanvasImageUrl={setCanvasImageUrl}
+              openedModal={openedModal}
             />
           </PaintBoardWrapper>
           <ArrowImageWrapper onClick={() => setIsCharacterDressedUp(true)}>
@@ -149,4 +259,19 @@ const MergedImage = styled(Image)`
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
+`;
+const ClothesGrade = styled.div`
+  font-size: 100px;
+  font-weight: 600;
+  color: red;
+  margin-bottom: 10px;
+`;
+
+const SuccessModalMessage = styled.div`
+  font-size: 25px;
+`;
+
+const InProgressModalMessage = styled.div`
+  font-size: 25px;
+  margin-bottom: 20px;
 `;

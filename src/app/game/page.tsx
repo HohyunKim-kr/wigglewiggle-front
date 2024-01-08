@@ -82,7 +82,7 @@ const Game = () => {
 
   const createFreeCharacter = async () => {
     //기본 캐릭터를 생성하는 함수
-    await wiggleFreeContract.connect(signer);
+    wiggleFreeContract.connect(signer);
     const mintNFT = await wiggleFreeContract.safeMint(userAddress);
     const receiptMintNFT = await mintNFT.wait();
     if (receiptMintNFT.status === 1) {

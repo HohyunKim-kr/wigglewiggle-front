@@ -14,7 +14,15 @@ const Header = () => {
       </Logo>
       <div style={{ display: "flex" }}>
         <Item
-          style={{ marginRight: "100px" }}
+          style={{ marginRight: "50px" }}
+          onClick={() => router.push("/game")}
+          $isClicked={pathname === "/game"}
+        >
+          Game
+        </Item>
+
+        <Item
+          style={{ marginRight: "50px" }}
           onClick={() => router.push("/dashboard")}
           $isClicked={pathname === "/dashboard"}
         >
@@ -22,21 +30,14 @@ const Header = () => {
         </Item>
 
         <Item
-          style={{ marginRight: "100px" }}
-          onClick={() => router.push("/game")}
-          $isClicked={pathname === "/game"}
-        >
-          Game
-        </Item>
-        <Item
-          style={{ marginRight: "100px" }}
+          style={{ marginRight: "50px" }}
           onClick={() => router.push("/editor")}
           $isClicked={pathname === "/editor"}
         >
           Editor
         </Item>
         <Item
-          style={{ marginRight: "100px" }}
+          style={{ marginRight: "50px" }}
           onClick={() => router.push("/market-place")}
           $isClicked={pathname.startsWith("/market-place")}
         >
@@ -79,7 +80,7 @@ const Logo = styled.div`
 
 const Item = styled.div<{ $isClicked: boolean }>`
   color: ${(props) => (props.$isClicked ? colors.primary : colors.white)};
-  font-size: 45px;
+  font-size: 40px;
   line-height: 90%;
 
   cursor: pointer;
