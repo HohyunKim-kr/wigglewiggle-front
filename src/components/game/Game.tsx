@@ -4,7 +4,8 @@ import io from "socket.io-client";
 import Phaser from "phaser";
 
 export default function Game() {
-  const gameRef = useRef<HTMLDivElement>(null);
+  // const gameRef = useRef<HTMLDivElement>(null);
+  const gameRef = useRef(null);
   let game: Phaser.Game;
   let cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   let player1Score = 0;
@@ -13,7 +14,7 @@ export default function Game() {
   const [socketIo, setSocketIo] = useState<any | null>(null);
 
   if (!socketIo) {
-    const _socketIo = io("http://127.0.0.1:4000");
+    const _socketIo = io("http://15.164.165.151");
     setSocketIo(_socketIo);
   }
   useEffect(() => {
@@ -206,7 +207,7 @@ export default function Game() {
       function endGame() {
         // 게임 종료 처리
         const winner = player1Score === 3 ? "Player 1" : "Player 2";
-        const endText = (game as any).add.text(
+        const endText = (game as any)?.add?.text(
           Number(game.config.width) / 2,
           Number(game.config.height) / 2,
           `${winner} wins!`,
