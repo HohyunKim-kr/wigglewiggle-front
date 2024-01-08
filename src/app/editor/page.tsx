@@ -14,9 +14,10 @@ import { useSelector } from "react-redux";
 import { getAddressState } from "@/redux/slice/authSlice";
 import SuccessModal from "@/components/modal/SuccessModal";
 import InProgressModal from "@/components/modal/InprogressModal";
-
-const wiggleClothingAddress = "0x39F648e6Ae8DC7d4cACfbACeC030305a2225576e";
-const contractOwnerAddress = "0xD32a40D299E58d9212a6039AE230dbb52E74e47B";
+import {
+  contractOwnerAddress,
+  wiggleClothingAddress,
+} from "@/lib/contractAddresses";
 
 const Editor = () => {
   const [canvasImageUrl, setCanvasImageUrl] = useState("");
@@ -66,6 +67,13 @@ const Editor = () => {
       console.log(ipfsHash);
 
       // Clothing 정보 등록
+      const setClothingURI = await wiggleClothingContract.setTokenURI(
+        tokenId,
+        ipfsHash
+      );
+      const receiptSetClothingURI = await setClothingURI.wait();
+      console.log(receiptSetClothingURI);
+
       const privateKey = await web3auth!.provider!.request({
         method: "private_key",
       });
@@ -92,7 +100,7 @@ const Editor = () => {
 
     if (isCreationConfirmed) {
       console.log(clothingName, clothingPrice);
-      setOpenedModal("inProgess");
+      setOpenedModal("inProgress");
       createClothing();
       setClothingName("");
       setClothingPrice(0);
@@ -112,7 +120,7 @@ const Editor = () => {
           setIsCreationConfirmed={setIsCreationConfirmed}
         />
       )}
-      {openedModal === "inProgess" && (
+      {openedModal === "inProgress" && (
         <InProgressModal>
           <ClothesGrade>A</ClothesGrade>
           <InProgressModalMessage>Creating clothing...</InProgressModalMessage>
