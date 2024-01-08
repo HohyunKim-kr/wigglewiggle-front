@@ -4,7 +4,8 @@ import io from "socket.io-client";
 import Phaser from "phaser";
 
 export default function Game() {
-  const gameRef = useRef<HTMLDivElement>(null);
+  // const gameRef = useRef<HTMLDivElement>(null);
+  const gameRef = useRef(null);
   let game: Phaser.Game;
   let cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   let player1Score = 0;
@@ -206,7 +207,7 @@ export default function Game() {
       function endGame() {
         // 게임 종료 처리
         const winner = player1Score === 3 ? "Player 1" : "Player 2";
-        const endText = (game as any).add.text(
+        const endText = (game as any)?.add?.text(
           Number(game.config.width) / 2,
           Number(game.config.height) / 2,
           `${winner} wins!`,
