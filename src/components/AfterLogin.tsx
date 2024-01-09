@@ -32,7 +32,7 @@ const AfterLogin = () => {
       </Section>
       <Section>
         <EditorWrapper>
-          <EditorPreview>editor preview가 들어갈 자리</EditorPreview>
+          <EditorPreview src="/edit-preview.png" />
           <YellowShortButton
             text="Editor"
             onClickHandler={() => router.push("/editor")}
@@ -101,10 +101,11 @@ const EditorWrapper = styled.div`
   align-items: center;
 `;
 
-const EditorPreview = styled.div`
-  width: 500px;
-  height: 347px;
-  border: 1px solid black;
+const EditorPreview = styled.img`
+  width: 900px;
+  height: 520px;
+  border: 2px solid black;
+  border-radius: 15px;
 
   display: flex;
   align-items: center;
