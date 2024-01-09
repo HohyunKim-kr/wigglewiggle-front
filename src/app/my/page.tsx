@@ -12,6 +12,7 @@ import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeC
 import CharacterBlock from "@/components/FreeCharacterBlock";
 import ClothesBlock from "@/components/FreeClothesBlock";
 import ProfileBlock from "@/components/ProfileBlock";
+import RewardBlock from "@/components/RewardBlock";
 import { useSelector } from "react-redux";
 import { getAddressState, getNicknameState } from "@/redux/slice/authSlice";
 import { AlchemyProvider, parseEther, parseUnits } from "ethers";
@@ -95,6 +96,20 @@ const My = () => {
         </MyProfile>
 
         <MyProperty>
+          <MyRewardContainer>
+            <Item style={{ padding: "25px", margin: "0", marginLeft: "45px" }}>
+              My Rewards
+            </Item>
+            <MyReward style={{ marginLeft: "40px" }}>
+              <RewardBlock imgSrc={"/rewardImg/reward-red.png"} number={0} />
+              <RewardBlock imgSrc={"/rewardImg/reward-orange.png"} number={0} />
+              <RewardBlock imgSrc={"/rewardImg/reward-yellow.png"} number={0} />
+              <RewardBlock imgSrc={"/rewardImg/reward-green.png"} number={0} />
+              <RewardBlock imgSrc={"/rewardImg/reward-blue.png"} number={0} />
+              <RewardBlock imgSrc={"/rewardImg/reward-navy.png"} number={0} />
+              <RewardBlock imgSrc={"/rewardImg/reward-purple.png"} number={0} />
+            </MyReward>
+          </MyRewardContainer>
           <MyCharacterContainer>
             <Title style={{ marginTop: "0px" }}>
               <Item>My Character</Item>
@@ -203,9 +218,18 @@ const MyClothesContainer = styled.div`
   width: auto;
   height: auto;
 `;
+const MyRewardContainer = styled.div`
+  width: auto;
+  height: auto;
+`;
 
+const MyReward = styled.div`
+  padding-left: 40px;
+`;
 const MyCharacter = styled.div``;
-const MyClothes = styled.div``;
+const MyClothes = styled.div`
+  padding-left: 40px;
+`;
 
 const Title = styled.div`
   width: 100%;

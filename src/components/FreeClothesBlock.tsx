@@ -25,7 +25,9 @@ const Clothes = styled.div`
   border-radius: 18px;
   background: #292929;
   padding: 0 19px;
-  width: 240px;
+  padding-top: 19px;
+  width: fit-content;
+  height: fit-content;
   margin-bottom: 25px;
   margin-right: 40px;
   float: left;

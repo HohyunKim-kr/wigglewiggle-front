@@ -45,9 +45,7 @@ const AfterLogin = () => {
             text="Market Place"
             onClickHandler={() => router.push("/market-place")}
           />
-          <MarketPlacePreview>
-            marketplace preview가 들어갈 자리
-          </MarketPlacePreview>
+          <MarketPlacePreview src="/market-place-preview.png" />
         </MarketplaceWrapper>
       </Section>
     </Container>
@@ -97,13 +95,13 @@ const EditorWrapper = styled.div`
   width: 100%;
   padding: 0 50px 0 174px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
 const EditorPreview = styled.img`
-  width: 900px;
-  height: 520px;
+  width: 800px;
+  height: 420px;
   border: 2px solid black;
   border-radius: 15px;
 
@@ -116,14 +114,15 @@ const MarketplaceWrapper = styled.div`
   width: 100%;
   padding: 0 88px 0 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
-const MarketPlacePreview = styled.div`
+const MarketPlacePreview = styled.img`
   width: 800px;
   height: 327px;
   border: 1px solid black;
+  border-radius: 15px;
 
   display: flex;
   align-items: center;

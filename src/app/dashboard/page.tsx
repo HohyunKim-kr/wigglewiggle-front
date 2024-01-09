@@ -20,7 +20,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={1}
           imgSrc={"/profile-simple.jpeg"}
-          name={"Hohyun"}
+          name={"Donghyun"}
           win={2}
           lose={3}
           reward={2}
@@ -28,7 +28,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={2}
           imgSrc={"/profile-simple.jpeg"}
-          name={"Seungeun"}
+          name={"Hyunlee"}
           win={2}
           lose={3}
           reward={2}
@@ -36,7 +36,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={3}
           imgSrc={"/profile-simple.jpeg"}
-          name={"Donghyun"}
+          name={"Hohyun"}
           win={2}
           lose={3}
           reward={2}
@@ -44,7 +44,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={4}
           imgSrc={"/profile-simple.jpeg"}
-          name={"Hyunlee"}
+          name={"Seungeun"}
           win={2}
           lose={3}
           reward={2}
@@ -52,7 +52,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={5}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Leo"}
           win={2}
           lose={3}
           reward={2}
@@ -60,7 +60,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={6}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Mia"}
           win={2}
           lose={3}
           reward={2}
@@ -68,7 +68,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={7}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Max"}
           win={2}
           lose={3}
           reward={2}
@@ -76,7 +76,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={8}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Ava"}
           win={2}
           lose={3}
           reward={2}
@@ -84,7 +84,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={9}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"zoe"}
           win={2}
           lose={3}
           reward={2}
@@ -92,7 +92,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={10}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Eli"}
           win={2}
           lose={3}
           reward={2}
@@ -100,7 +100,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={11}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Ivy"}
           win={2}
           lose={3}
           reward={2}
@@ -108,7 +108,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={12}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Kai"}
           win={2}
           lose={3}
           reward={2}
@@ -116,7 +116,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={13}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Luna"}
           win={2}
           lose={3}
           reward={2}
@@ -124,7 +124,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={14}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Jax"}
           win={2}
           lose={3}
           reward={2}
@@ -132,7 +132,7 @@ const DashBoard = () => {
         <DashBoardBlock
           rank={15}
           imgSrc={"/profile-simple.jpeg"}
-          name={"-"}
+          name={"Finn"}
           win={2}
           lose={3}
           reward={2}
