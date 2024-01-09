@@ -9,21 +9,34 @@ import PremiumCharacterModal from "@/components/modal/market-place-modal/charact
 import PremiumClothesModal from "@/components/modal/market-place-modal/clothes-modal/PremiumClothesModal";
 import PremiumCharacterBlock from "@/components/PremiumCharacterBlock";
 import PremiumClothesBlock from "@/components/PremiumClothesBlock";
+import premiumCharacterList from "../../../lib/premiumCharacter.json";
+
+type IPremiumCharacter = {
+  name: string;
+  URI: string;
+};
+
+const initialPremiumCharacter = {
+  name: "",
+  URI: "",
+};
 
 const MarketPlacePremium = () => {
   const router = useRouter();
   const pathname = usePathname();
-
   const [openedModal, setOpenedModal] = useState("");
+  const [premiumCharacter, setPremiumCharacter] = useState<IPremiumCharacter>(
+    initialPremiumCharacter
+  );
 
   return (
     <>
       {openedModal === "character" && (
         <PremiumCharacterModal
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
-          tokenId={"dksfldkfsdlkfkdjf"}
-          price={"$000"}
+          URI={premiumCharacter.URI}
+          name={premiumCharacter.name}
+          tokenId={""}
+          price={"100 Matic"}
           onClose={() => setOpenedModal("")}
         />
       )}
@@ -55,46 +68,26 @@ const MarketPlacePremium = () => {
         </Header>
         <MyProperty>
           <MyCharacterContainer>
-            <Title style={{ marginTop: "0px" }}>
-              <Item>Character</Item>
-            </Title>
-            <MyCharacter style={{ marginLeft: "40px" }}>
-              <PremiumCharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                tier={"A+"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
-              <PremiumCharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                tier={"A+"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
-              <PremiumCharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                tier={"A+"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
-              <PremiumCharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                tier={"A+"}
-                onClickHandler={() => setOpenedModal("character")}
-              />
+            <Title>Characters</Title>
+            <MyCharacter>
+              {premiumCharacterList.map((premiumCharacter, index) => (
+                <PremiumCharacterBlock
+                  imgSrc={"https://ipfs.io/ipfs/" + premiumCharacter.URI}
+                  name={premiumCharacter.name}
+                  price={"100 Matic"}
+                  onClickHandler={() => {
+                    setOpenedModal("character");
+                    setPremiumCharacter(premiumCharacter);
+                  }}
+                  key={index}
+                />
+              ))}
             </MyCharacter>
           </MyCharacterContainer>
 
           <MyClothesContainer>
-            <Title style={{ marginTop: "0px" }}>
-              <Item>Clothes</Item>
-            </Title>
-            <MyClothes style={{ marginLeft: "40px" }}>
+            <Title>Clothings</Title>
+            <MyClothes>
               <PremiumClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
@@ -182,7 +175,8 @@ const FreeOrPremium = styled.button<{ $isClicked: boolean }>`
 
 const MyProperty = styled.section`
   display: flex;
-  flex-direction: row;
+  padding: 0px 80px;
+  justify-content: space-between;
 `;
 const MyCharacterContainer = styled.div`
   width: auto;
@@ -193,17 +187,28 @@ const MyClothesContainer = styled.div`
   height: auto;
 `;
 
-const MyCharacter = styled.div``;
-const MyClothes = styled.div``;
+const MyCharacter = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // 2열
+  grid-template-rows: repeat(2, 1fr); // 2행
+  grid-gap: 30px; // 격자 사이 간격
+  margin-top: 20px;
+`;
+const MyClothes = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 2열
+  grid-gap: 20px; // 격자 사이 간격
+  margin-top: 20px;
+`;
 
 const Title = styled.div`
   width: 100%;
   height: fit-content;
-  padding: 35px;
-  padding-bottom: 0px;
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 40px;
+  color: #d3d3d3;
+  font-size: 40px;
 `;
 
 const Item = styled.div`

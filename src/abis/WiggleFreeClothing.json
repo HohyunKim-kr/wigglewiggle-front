@@ -1,12 +1,6 @@
 [
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "customBaseURI_",
-        "type": "string"
-      }
-    ],
+    "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -134,6 +128,25 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "string",
+        "name": "clothingURI",
+        "type": "string"
+      }
+    ],
+    "name": "TokenURISet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "from",
@@ -212,13 +225,19 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getBaseURI",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "getClothingURIsByOwner",
     "outputs": [
       {
-        "internalType": "string",
+        "internalType": "string[]",
         "name": "",
-        "type": "string"
+        "type": "string[]"
       }
     ],
     "stateMutability": "view",
@@ -232,25 +251,31 @@
         "type": "address"
       }
     ],
-    "name": "getTokenIdByAddress",
+    "name": "getTokenIdsByOwnerAddress",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint256[]",
         "name": "",
-        "type": "uint256"
+        "type": "uint256[]"
       }
     ],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getUserList",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTokenURI",
     "outputs": [
       {
-        "internalType": "address[]",
+        "internalType": "string",
         "name": "",
-        "type": "address[]"
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -329,7 +354,7 @@
     "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -338,6 +363,11 @@
         "internalType": "address",
         "name": "_to",
         "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_tokenURI",
+        "type": "string"
       }
     ],
     "name": "safeMint",
@@ -399,7 +429,7 @@
     ],
     "name": "safeTransferFrom",
     "outputs": [],
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -423,12 +453,17 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "_tokenId",
+        "type": "uint256"
+      },
+      {
         "internalType": "string",
-        "name": "customBaseURI_",
+        "name": "_tokenURI",
         "type": "string"
       }
     ],
-    "name": "setBaseURI",
+    "name": "setTokenURI",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -504,7 +539,7 @@
     ],
     "name": "transferFrom",
     "outputs": [],
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
