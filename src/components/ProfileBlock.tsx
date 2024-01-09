@@ -36,8 +36,8 @@ const Profile = styled.div`
 `;
 
 const ProfileImg = styled.img`
-  width: 264px;
-  height: 340px;
+  width: 260px;
+  height: 260px;
   border-radius: 18px;
   margin-top: 19px;
 `;
@@ -51,11 +51,12 @@ const Name = styled.p`
 
 const Wallet = styled.p`
   color: ${colors.white};
+  font-size: 10px;
 `;
 
 const MyMoney = styled.p`
   color: #ffeed6;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 10px;
   margin-bottom: 25px;
 `;

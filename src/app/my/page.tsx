@@ -2,7 +2,7 @@
 
 import { styled } from "styled-components";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import PremiumCharacterModal from "@/components/modal/my-modal/my-character-modal/PremiumCharacterModal";
 import PremiumClothesModal from "@/components/modal/my-modal/my-clothes-modal/PremiumClothesModal";
@@ -12,11 +12,29 @@ import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeC
 import CharacterBlock from "@/components/FreeCharacterBlock";
 import ClothesBlock from "@/components/FreeClothesBlock";
 import ProfileBlock from "@/components/ProfileBlock";
+import { useSelector } from "react-redux";
+import { getAddressState, getNicknameState } from "@/redux/slice/authSlice";
+import { AlchemyProvider, parseEther, parseUnits } from "ethers";
 
 const My = () => {
   const router = useRouter();
-
   const [openedModal, setOpenedModal] = useState("");
+  const userNickname: string | null = useSelector(getNicknameState);
+  const userAddress: string | null = useSelector(getAddressState);
+  const [userBalance, setUserBalance] = useState(0);
+
+  const provider = new AlchemyProvider(
+    "maticmum",
+    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
+  );
+
+  useEffect(() => {
+    async function getUserBalance() {
+      const balance = await provider.getBalance(userAddress!);
+      setUserBalance(Number(balance));
+    }
+    getUserBalance();
+  }, []);
 
   return (
     <>
@@ -69,10 +87,10 @@ const My = () => {
             Profile
           </Item>
           <ProfileBlock
-            imgSrc={"/images/cat.jpeg"}
-            name={"Cat"}
-            wallet={"0x5165161684651561651"}
-            myMoney={"$000"}
+            imgSrc={"images/free_character.png"}
+            name={userNickname!}
+            wallet={userAddress!}
+            myMoney={userBalance / 10 ** 18 + " Matic"}
           />
         </MyProfile>
 
