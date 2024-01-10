@@ -9,7 +9,6 @@ type Props = {
   imgSrc: string;
   name: string;
   price: string;
-  tier: string;
   onClickHandler: () => void;
 };
 
@@ -17,7 +16,6 @@ const PremiumCharacterBlock = ({
   imgSrc,
   name,
   price,
-  tier,
   onClickHandler,
 }: Props) => {
   return (
@@ -28,7 +26,6 @@ const PremiumCharacterBlock = ({
           <Name>{name}</Name>
           <Price>{price}</Price>
         </NamePrice>
-        <Tier text={tier}>{tier}</Tier>
       </Inner>
     </Character>
   );
@@ -42,15 +39,13 @@ const Character = styled.div`
   padding: 0 19px;
   width: fit-content;
   height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 40px;
   float: left;
   cursor: pointer;
 `;
 
 const CharacterImg = styled.img`
-  width: 190px;
-  height: 255px;
+  width: 220px;
+  height: 220px;
   border-radius: 18px;
   margin-top: 19px;
 `;
@@ -72,6 +67,7 @@ const Name = styled.p`
   font-size: 30px;
   margin-top: 19px;
   margin-bottom: 10px;
+  text-align: center;
 `;
 
 const Price = styled.p`
@@ -79,16 +75,5 @@ const Price = styled.p`
   font-size: 20px;
   margin-top: 10px;
   margin-bottom: 25px;
-`;
-
-const Tier = styled.div<TierProps>`
-  color: ${(props) => {
-    return props.text === "A+"
-      ? "#fac679"
-      : props.text === "B+"
-      ? "#afafaf"
-      : "#92611d";
-  }};
-  font-size: 50px;
-  margin-left: 40px;
+  text-align: center;
 `;

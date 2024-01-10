@@ -1,17 +1,31 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { Dispatch, ReactNode, SetStateAction } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import colors from "@/styles/color";
 
 interface ModalProps {
   onClose: () => void;
+  clothingName: string;
+  setClothingName: Dispatch<SetStateAction<string>>;
+  clothingPrice: number;
+  setClothingPrice: Dispatch<SetStateAction<number>>;
+  setIsCreationConfirmed: Dispatch<SetStateAction<boolean>>;
 }
 
-const SellThisClothing = ({ onClose }: ModalProps) => {
-  const [userInputPrice, setInputPrice] = useState("");
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputPrice(e.target.value);
+const SellThisClothing = ({
+  onClose,
+  clothingName,
+  setClothingName,
+  clothingPrice,
+  setClothingPrice,
+  setIsCreationConfirmed,
+}: ModalProps) => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setClothingName(e.target.value);
+  };
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setClothingPrice(Number(e.target.value));
   };
   return (
     <>
@@ -26,13 +40,17 @@ const SellThisClothing = ({ onClose }: ModalProps) => {
             <InputWrapper>
               <ClothesName>
                 <InnerTitle>name : </InnerTitle>
-                <Input type="text" />
+                <Input
+                  type="text"
+                  value={clothingName}
+                  onChange={handleNameChange}
+                />
               </ClothesName>
               <ClothesPrice>
                 <InnerTitle>price : </InnerTitle>
                 <Input
-                  value={userInputPrice}
-                  onChange={handleInputChange}
+                  value={clothingPrice}
+                  onChange={handlePriceChange}
                   style={{ marginLeft: "17px" }}
                   type="number"
                 />
@@ -45,7 +63,14 @@ const SellThisClothing = ({ onClose }: ModalProps) => {
               </p>
               <p style={{ margin: "0" }}>on the marketplace</p>
             </Explanation>
-            <Confirm>Confirm</Confirm>
+            <Confirm
+              onClick={() => {
+                setIsCreationConfirmed(true);
+                // onClose();
+              }}
+            >
+              Confirm
+            </Confirm>
           </Inner>
         </ModalContent>
       </ModalOverlay>

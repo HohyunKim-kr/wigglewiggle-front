@@ -8,7 +8,7 @@ interface ModalProps {
 }
 
 type Props = {
-  imgSrc: string;
+  URI: string;
   name: string;
   tokenId: string;
   price: string;
@@ -16,7 +16,7 @@ type Props = {
 
 const PremiumCharacterModal = ({
   onClose,
-  imgSrc,
+  URI,
   name,
   tokenId,
   price,
@@ -29,7 +29,7 @@ const PremiumCharacterModal = ({
             <CloseButton onClick={onClose}>X</CloseButton>
           </div>
           <Inner>
-            <CharacterImg src={imgSrc} alt={name} />
+            <CharacterImg src={"https://ipfs.io/ipfs/" + URI} alt={name} />
             <Information>
               <Name>{name}</Name>
               <TokenId>{tokenId}</TokenId>
@@ -58,7 +58,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background: ${colors.white};
+  background: lightgray;
   padding: 20px;
   border: 3px solid #bb9f00;
   border-radius: 8px;
@@ -86,7 +86,7 @@ const Inner = styled.div`
 
 const CharacterImg = styled.img`
   width: 190px;
-  height: 255px;
+  height: 190px;
   border-radius: 18px;
   margin: 20px;
   margin-top: 0;

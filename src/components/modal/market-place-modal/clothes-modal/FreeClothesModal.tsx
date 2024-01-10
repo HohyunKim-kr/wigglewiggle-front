@@ -8,18 +8,20 @@ interface ModalProps {
 }
 
 type Props = {
-  imgSrc: string;
+  URI: string;
   name: string;
   tokenId: string;
   price: string;
+  purchaseButtonHandler: () => void;
 };
 
 const FreeClothesModal = ({
   onClose,
-  imgSrc,
+  URI,
   name,
   tokenId,
   price,
+  purchaseButtonHandler,
 }: ModalProps & Props) => {
   return (
     <>
@@ -29,12 +31,14 @@ const FreeClothesModal = ({
             <CloseButton onClick={onClose}>X</CloseButton>
           </div>
           <Inner>
-            <ClothesImg src={imgSrc} alt={name} />
+            <ClothesImg src={"https://ipfs.io/ipfs/" + URI} alt={name} />
             <Information>
               <Name>{name}</Name>
               <TokenId>{tokenId}</TokenId>
               <Price>{price}</Price>
-              <Purchase>Purchase</Purchase>
+              <PurchaseButton onClick={purchaseButtonHandler}>
+                Purchase
+              </PurchaseButton>
             </Information>
           </Inner>
         </ModalContent>
@@ -110,7 +114,7 @@ const Price = styled.p`
   color: #6b6b6b;
   font-size: 25px;
 `;
-const Purchase = styled.button`
+const PurchaseButton = styled.button`
   font-family: "ABeeZee";
   font-size: 30px;
   color: ${colors.black};

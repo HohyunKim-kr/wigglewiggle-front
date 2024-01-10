@@ -19,120 +19,120 @@ const DashBoard = () => {
       <DashBoardWrapper>
         <DashBoardBlock
           rank={1}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Donghyun"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={2}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Hyunlee"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={3}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Hohyun"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={4}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Seungeun"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={5}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Leo"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={6}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Mia"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={7}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Max"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={8}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Ava"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={9}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"zoe"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={10}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Eli"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={11}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Ivy"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={12}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Kai"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={13}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Luna"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={14}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Jax"}
           win={2}
           lose={3}
           reward={2}
         />
         <DashBoardBlock
           rank={15}
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
+          imgSrc={"/profile-simple.jpeg"}
+          name={"Finn"}
           win={2}
           lose={3}
           reward={2}

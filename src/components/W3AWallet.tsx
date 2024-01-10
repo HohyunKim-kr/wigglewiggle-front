@@ -16,8 +16,6 @@ import { AlchemyProvider, ethers } from "ethers";
 import ABI from ".././abis/WiggleFree.json";
 import { useWeb3Auth } from "@/context/Web3AuthContext";
 
-// const wiggleFreeAddress = "0x737C374a0c2cb6CeFa7D9f33b768Af4b9985e57e";
-
 const W3AWallet = () => {
   const dispatch = useDispatch();
 

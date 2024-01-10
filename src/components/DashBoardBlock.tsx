@@ -50,7 +50,7 @@ const Rank = styled.div`
 const Profile = styled.div`
   width: 20%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 

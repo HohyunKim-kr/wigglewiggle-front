@@ -40,17 +40,16 @@ const Clothes = styled.div`
   border-radius: 18px;
   background: #292929;
   padding: 0 19px;
+  padding-top: 19px;
   width: fit-content;
   height: fit-content;
-  margin-bottom: 25px;
-  margin-left: 40px;
   float: left;
   cursor: pointer;
 `;
 
 const ClothesImg = styled.img`
-  width: 130px;
-  height: 130px;
+  width: 160px;
+  height: 160px;
   border-radius: 18px;
   margin-top: 19px;
 `;
