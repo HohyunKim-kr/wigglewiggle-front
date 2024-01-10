@@ -32,7 +32,7 @@ export default function Game({
         default: "arcade",
         arcade: {
           gravity: { y: 0 },
-          debug: true,
+          debug: false,
         },
       },
       scene: {
@@ -45,9 +45,10 @@ export default function Game({
     game = new Phaser.Game(config);
     // socket = io();
     let myPaddle: Phaser.Physics.Arcade.Sprite;
+    let puck: Phaser.Physics.Arcade.Sprite;
     function preload(this: Phaser.Scene) {
-      this.load.image("paddle", "/Cat_character.png");
-      this.load.image("puck", "/epepdooly.png");
+      this.load.image("paddle", "/images/Free_flowerpot.png");
+      this.load.image("puck", "/images/ball.png");
     }
 
     function create(this: Phaser.Scene) {
@@ -69,12 +70,18 @@ export default function Game({
         opponentPaddle.y = data.y;
       });
 
+      socketIo.on("updatePuck", (data: any) => {
+        // console.log(data);
+        puck.x = data.x;
+        puck.y = data.y;
+      });
+
       if (!eventOn) {
         eventOn = true;
       }
 
       const self = this;
-      let { puck }: any = self;
+      // let { puck }: any = self;
       interface Ikeyboard {
         input: {
           keyboard: any;
@@ -206,11 +213,11 @@ export default function Game({
         socketIo.emit("playerScored", { player1Score, player2Score });
         if (player1Score === 3 || player2Score === 3) {
           endGame();
-          setIsWin(true);
         }
       };
       function endGame() {
         // 게임 종료 처리
+        setIsWin(true);
         const winner = player1Score === 3 ? "Player 1" : "Player 2";
         const endText = (game as any)?.add?.text(
           Number(game.config.width) / 2,
@@ -240,6 +247,11 @@ export default function Game({
       socketIo.emit("playerPosition", {
         x: 1200 - (myPaddle.x - 510),
         y: myPaddle.y,
+      });
+
+      socketIo.emit("puckPosition", {
+        x: 1200 - (puck.x - 510),
+        y: puck.y,
       });
     }
   }, []);

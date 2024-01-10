@@ -1,22 +1,25 @@
 import { styled } from "styled-components";
 
 type Props = {
-  imgSrc: string;
-  number: string;
+  onClickHandler: () => void;
 };
 
-const FreeClothesBlock = ({ imgSrc, number }: Props) => {
+const EggDropBlock = ({ onClickHandler }: Props) => {
   return (
-    <Reward>
-      <RewardImg src={imgSrc} alt="reward" />
-      <Number>{number}</Number>
-    </Reward>
+    <EggDrop
+      onClick={() => {
+        onClickHandler();
+      }}
+    >
+      <EggDropImg src="/giftimg.png" />
+      <EggDropContent>Egg Drop</EggDropContent>
+    </EggDrop>
   );
 };
 
-export default FreeClothesBlock;
+export default EggDropBlock;
 
-const Reward = styled.div`
+const EggDrop = styled.div`
   border-radius: 18px;
   background: #292929;
   padding: 0 10px;
@@ -32,16 +35,17 @@ const Reward = styled.div`
   margin-bottom: 25px;
   margin-right: 20px;
   float: left;
+  cursor: pointer;
 `;
 
-const RewardImg = styled.img`
+const EggDropImg = styled.img`
   width: 125px;
   height: 125px;
 `;
 
-const Number = styled.p`
+const EggDropContent = styled.p`
   color: #ffffff;
-  font-size: 33px;
+  font-size: 28px;
   margin-top: 25px;
   margin-bottom: 10px;
 `;
