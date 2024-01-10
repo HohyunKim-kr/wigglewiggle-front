@@ -41,7 +41,9 @@ export default function Game() {
     game = new Phaser.Game(config);
     // socket = io();
     let myPaddle: Phaser.Physics.Arcade.Sprite;
+    let puck: Phaser.Physics.Arcade.Sprite;
     function preload(this: Phaser.Scene) {
+      // 사용자의 이미지가 로드 되는 곳 : 여기서 ipfs의 이미지를 가져와야할듯 합니다. this.load.image는 public폴더에 저장되어 있는 이미지를 가져옵니다.
       this.load.image("paddle", "/Cat_character.png");
       this.load.image("puck", "/epepdooly.png");
     }
@@ -65,12 +67,18 @@ export default function Game() {
         opponentPaddle.y = data.y;
       });
 
+      socketIo.on("updatePuck", (data: any) => {
+        // console.log(data);
+        puck.x = data.x;
+        puck.y = data.y;
+      });
+
       if (!eventOn) {
         eventOn = true;
       }
 
       const self = this;
-      let { puck }: any = self;
+      // let { puck }: any = self;
       interface Ikeyboard {
         input: {
           keyboard: any;
@@ -235,6 +243,11 @@ export default function Game() {
       socketIo.emit("playerPosition", {
         x: 1200 - (myPaddle.x - 510),
         y: myPaddle.y,
+      });
+
+      socketIo.emit("puckPosition", {
+        x: 1200 - (puck.x - 510),
+        y: puck.y,
       });
     }
   }, []);
