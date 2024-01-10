@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import styled from "styled-components";
 import colors from "@/styles/color";
 
@@ -21,6 +21,8 @@ const FreeCharacterModal = ({
   address,
   price,
 }: ModalProps & Props) => {
+  const [isSeeClothes, setIsSeeClothes] = useState(false);
+
   return (
     <>
       <ModalOverlay>
@@ -29,17 +31,36 @@ const FreeCharacterModal = ({
             <CloseButton onClick={onClose}>X</CloseButton>
           </div>
           <Inner>
-            <CharacterImg src={imgSrc} alt={name} />
-            <Information>
-              <Name>{name}</Name>
-              <Address>{address}</Address>
-              <Price>{price}</Price>
-              <SeeClothes>See Clothes</SeeClothes>
-              <SellorSend>
-                <Sell>Sell</Sell>
-                <Send>Send</Send>
-              </SellorSend>
-            </Information>
+            {isSeeClothes ? (
+              <div>
+                <SeeClothesTitle>See Clothings</SeeClothesTitle>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img src="/images/FlowerPot.png" width={180} height={180} />
+                </div>
+              </div>
+            ) : (
+              <>
+                <CharacterImg src={imgSrc} alt={name} />
+                <Information>
+                  <Name>{name}</Name>
+                  <Address>{address}</Address>
+                  <Price>{price}</Price>
+                  <SeeClothes onClick={() => setIsSeeClothes(true)}>
+                    See Clothings
+                  </SeeClothes>
+                  <SellorSend>
+                    <Sell>Sell</Sell>
+                    <Send>Send</Send>
+                  </SellorSend>
+                </Information>
+              </>
+            )}
           </Inner>
         </ModalContent>
       </ModalOverlay>
@@ -107,7 +128,7 @@ const Name = styled.p`
 `;
 const Address = styled.p`
   color: #726755;
-  font-size: 17px;
+  font-size: 10px;
   margin-top: 8px;
   margin-bottom: 15px;
 `;
@@ -159,4 +180,10 @@ const Send = styled.button`
   padding: 0 30px;
   float: left;
   cursor: pointer;
+`;
+
+const SeeClothesTitle = styled.div`
+  width: 100%;
+  font-size: 50px;
+  text-align: center;
 `;

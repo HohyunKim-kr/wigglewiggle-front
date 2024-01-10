@@ -26,6 +26,7 @@ const My = () => {
   const userNickname: string | null = useSelector(getNicknameState);
   const userAddress: string | null = useSelector(getAddressState);
   const [userBalance, setUserBalance] = useState(0);
+  const [redEggAmount, setRedEggAmout] = useState(0);
 
   const provider = new AlchemyProvider(
     "maticmum",
@@ -52,19 +53,19 @@ const My = () => {
 
       {openedModal === "freeCharacter" && (
         <FreeCharacterModal
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
-          address={"dksfldkfsdlkfkdjf"}
-          price={"$000"}
+          imgSrc={"/images/free_character.png"}
+          name={"Free Wiggle"}
+          address={""}
+          price={"Free"}
           onClose={() => setOpenedModal("")}
         />
       )}
       {openedModal === "freeClothes" && (
         <FreeClothesModal
-          imgSrc={"/images/cat.jpeg"}
-          name={"Cat"}
-          tokenId={"dksfldkfsdlkfkdjf"}
-          price={"$000"}
+          imgSrc={"/images/FlowerPot.png"}
+          name={"Flower Pot"}
+          tokenId={"3"}
+          price={"Free"}
           onClose={() => setOpenedModal("")}
         />
       )}
@@ -112,8 +113,16 @@ const My = () => {
               My Rewards
             </Item>
             <MyReward style={{ marginLeft: "40px" }}>
-              <EggDropBlock onClickHandler={() => setOpenedModal("reward")} />
-              <RewardBlock imgSrc={"/rewardImg/reward-red.png"} number={"0"} />
+              <EggDropBlock
+                onClickHandler={() => {
+                  setOpenedModal("reward");
+                  setRedEggAmout(redEggAmount + 1);
+                }}
+              />
+              <RewardBlock
+                imgSrc={"/rewardImg/reward-red.png"}
+                number={redEggAmount.toString()}
+              />
               <RewardBlock
                 imgSrc={"/rewardImg/reward-orange.png"}
                 number={"0"}
@@ -143,28 +152,10 @@ const My = () => {
             </Title>
             <MyCharacter style={{ marginLeft: "40px" }}>
               <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
+                imgSrc={"/images/free_character.png"}
+                name={"Free Wiggle"}
+                price={"free"}
                 onClickHandler={() => setOpenedModal("freeCharacter")}
-              />
-              <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                onClickHandler={() => setOpenedModal("freeCharacter")}
-              />
-              <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                onClickHandler={() => setOpenedModal("premiumCharacter")}
-              />
-              <CharacterBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                onClickHandler={() => setOpenedModal("premiumCharacter")}
               />
             </MyCharacter>
           </MyCharacterContainer>
@@ -178,24 +169,13 @@ const My = () => {
             </Title>
             <MyClothes style={{ marginLeft: "40px" }}>
               <ClothesBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
+                imgSrc={"/images/FlowerPot.png"}
+                name={"Flower Pot"}
+                price={"Free"}
                 onClickHandler={() => setOpenedModal("freeClothes")}
               />
-              <ClothesBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                onClickHandler={() => setOpenedModal("freeClothes")}
-              />
-              <ClothesBlock
-                imgSrc={"/images/cat.jpeg"}
-                name={"Cat"}
-                price={"$000"}
-                onClickHandler={() => setOpenedModal("freeClothes")}
-              />
-              <ClothesBlock
+
+              {/* <ClothesBlock
                 imgSrc={"/images/cat.jpeg"}
                 name={"Cat"}
                 price={"$000"}
@@ -212,7 +192,7 @@ const My = () => {
                 name={"Cat"}
                 price={"$000"}
                 onClickHandler={() => setOpenedModal("premiumClothes")}
-              />
+              /> */}
             </MyClothes>
           </MyClothesContainer>
         </MyProperty>

@@ -32,8 +32,8 @@ const Character = styled.div`
 `;
 
 const CharacterImg = styled.img`
-  width: 190px;
-  height: 255px;
+  width: 200px;
+  height: 200px;
   border-radius: 18px;
   margin-top: 19px;
 `;

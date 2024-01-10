@@ -1,9 +1,13 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import Phaser from "phaser";
 
-export default function Game() {
+export default function Game({
+  setIsWin,
+}: {
+  setIsWin: Dispatch<SetStateAction<boolean>>;
+}) {
   // const gameRef = useRef<HTMLDivElement>(null);
   const gameRef = useRef(null);
   let game: Phaser.Game;
@@ -28,7 +32,7 @@ export default function Game() {
         default: "arcade",
         arcade: {
           gravity: { y: 0 },
-          debug: true,
+          debug: false,
         },
       },
       scene: {
@@ -43,9 +47,8 @@ export default function Game() {
     let myPaddle: Phaser.Physics.Arcade.Sprite;
     let puck: Phaser.Physics.Arcade.Sprite;
     function preload(this: Phaser.Scene) {
-      // 사용자의 이미지가 로드 되는 곳 : 여기서 ipfs의 이미지를 가져와야할듯 합니다. this.load.image는 public폴더에 저장되어 있는 이미지를 가져옵니다.
-      this.load.image("paddle", "/Cat_character.png");
-      this.load.image("puck", "/epepdooly.png");
+      this.load.image("paddle", "/images/Free_flowerpot.png");
+      this.load.image("puck", "/images/ball.png");
     }
 
     function create(this: Phaser.Scene) {
@@ -214,6 +217,7 @@ export default function Game() {
       };
       function endGame() {
         // 게임 종료 처리
+        setIsWin(true);
         const winner = player1Score === 3 ? "Player 1" : "Player 2";
         const endText = (game as any)?.add?.text(
           Number(game.config.width) / 2,

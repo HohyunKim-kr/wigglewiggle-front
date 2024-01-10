@@ -6,7 +6,11 @@ type Props = {
 
 const EggDropBlock = ({ onClickHandler }: Props) => {
   return (
-    <EggDrop onClick={() => onClickHandler()}>
+    <EggDrop
+      onClick={() => {
+        onClickHandler();
+      }}
+    >
       <EggDropImg src="/giftimg.png" />
       <EggDropContent>Egg Drop</EggDropContent>
     </EggDrop>

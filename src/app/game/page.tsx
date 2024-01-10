@@ -14,6 +14,9 @@ import {
   registryAddress,
   wiggleFreeAddress,
 } from "@/lib/contractAddresses";
+import CharacterClothingSelect from "@/components/CharacterClothingSelect";
+import SuccessModal from "@/components/modal/SuccessModal";
+import { useRouter } from "next/navigation";
 
 const salt = 0;
 
@@ -41,8 +44,14 @@ const Game = () => {
     signer
   );
 
+  const router = useRouter();
+
   const [isFreeCharacterExist, setIsFreeCharacterExist] = useState(false);
   const [imageURL, setImageURL] = useState("");
+  const [selectedCharacter, setSelectedCharacter] = useState("");
+  const [selectedClothing, setSelectedClothing] = useState("");
+  const [isCharClothSelected, setIsCharClothSelected] = useState(false);
+  const [isWin, setIsWin] = useState(false);
 
   const checkFreeCharacterExistence = async () => {
     wiggleFreeContract.connect(signer);
@@ -128,23 +137,45 @@ const Game = () => {
   }, []);
 
   return (
-    <Container>
-      {isFreeCharacterExist ? (
-        <div>
-          {/* <img src={imageURL} /> */}
-          <WiggleGame />
-        </div>
-      ) : (
-        <ButtonWrapper>
-          <YellowLongButton
-            text={"Create Free Character"}
-            onClickHandler={() => {
-              createFreeCharacter();
-            }}
-          />
-        </ButtonWrapper>
+    <>
+      {isWin && (
+        <SuccessModal
+          onClose={() => setIsWin(false)}
+          OKButtonHandler={() => router.push("my")}
+        >
+          <SuccessModalMessage>You WIN!!</SuccessModalMessage>
+          <SuccessModalMessage>
+            You received 1 Mystery Box🎁
+          </SuccessModalMessage>
+        </SuccessModal>
       )}
-    </Container>
+      <Container>
+        {isFreeCharacterExist ? (
+          isCharClothSelected ? (
+            <GameWrapper>
+              <WiggleGame setIsWin={setIsWin} />
+            </GameWrapper>
+          ) : (
+            <CharacterClothingSelect
+              selectedCharacter={selectedCharacter}
+              setSelectedCharacter={setSelectedCharacter}
+              selectedClothing={selectedClothing}
+              setSelectedClothing={setSelectedClothing}
+              setIsCharClothSelected={setIsCharClothSelected}
+            />
+          )
+        ) : (
+          <ButtonWrapper>
+            <YellowLongButton
+              text="Create Free Character"
+              onClickHandler={() => {
+                createFreeCharacter();
+              }}
+            />
+          </ButtonWrapper>
+        )}
+      </Container>
+    </>
   );
 };
 
@@ -152,11 +183,25 @@ export default Game;
 
 const Container = styled.div`
   height: calc(100vh - 100px);
+`;
+
+const GameWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 `;
 
 const ButtonWrapper = styled.div`
   height: 70px;
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+`;
+
+const SuccessModalMessage = styled.div`
+  font-size: 25px;
 `;

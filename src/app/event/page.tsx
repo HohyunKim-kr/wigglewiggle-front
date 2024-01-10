@@ -25,18 +25,23 @@ const FridayAllNightWeekend = () => {
       )}
 
       <Container>
-        <Title>Friday All Night Weekend</Title>
+        <Title>🎉Friday All Night Weekend🎉</Title>
         <Element>
           Today is the day for a 1:1 battle where you can seize the
-          opponent&#39;s premium clothing. Battle participation requirements:
+          opponent&#39;s premium clothing.
         </Element>
-        <RequirementsWrapper>
-          <Requirements>• You should own a premium character.</Requirements>
-          <Requirements>• You should possess premium clothing.</Requirements>
-          <Requirements>
-            • You should grant permission for premium asset authority.
-          </Requirements>
-        </RequirementsWrapper>
+        <div style={{ marginBottom: "40px" }}>
+          <Element style={{ marginTop: "30px", fontSize: "32px" }}>
+            Battle Participation Requirements:
+          </Element>
+          <RequirementsWrapper>
+            <Requirements>✅ You should own a premium character.</Requirements>
+            <Requirements>✅ You should possess premium clothing.</Requirements>
+            <Requirements>
+              ✅ You should grant permission for premium asset authority.
+            </Requirements>
+          </RequirementsWrapper>
+        </div>
         <Participate onClick={() => setOpenedModal("success")}>
           Participate in A battle pool
         </Participate>
@@ -61,8 +66,8 @@ const Container = styled.div`
 `;
 const Title = styled.div`
   margin: 20px;
-  margin-top: 50px;
-  font-size: 50px;
+  margin-top: 30px;
+  font-size: 60px;
   color: ${colors.primary};
 `;
 const Element = styled.div`
@@ -71,24 +76,23 @@ const Element = styled.div`
   color: #ffffff;
 `;
 const RequirementsWrapper = styled.div`
-  margin: 20px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  width: 80%;
 `;
 const Requirements = styled.div`
   font-size: 30px;
-  margin-left: 20px;
   color: #ffe6c0;
+  display: flex;
 `;
 const Participate = styled.button`
   font-family: "ABeeZee";
   font-size: 30px;
-  margin: 20px;
+  margin-bottom: 20px;
+  width: 40%;
   color: ${colors.black};
   height: fit-content;
-  width: fit-content;
-  border-radius: 5px;
+  border-radius: 10px;
   border-color: ${colors.primary};
   background: ${colors.primary};
   padding: 20px 29px;
