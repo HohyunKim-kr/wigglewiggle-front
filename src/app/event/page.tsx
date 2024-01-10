@@ -2,31 +2,52 @@
 
 import { styled } from "styled-components";
 import React from "react";
+import { useState } from "react";
 import colors from "@/styles/color";
+import SuccessModal from "@/components/modal/SuccessModal";
 
 const FridayAllNightWeekend = () => {
+  const [openedModal, setOpenedModal] = useState("");
   return (
-    <Container>
-      <Title>Friday All Night Weekend</Title>
-      <Element>
-        Today is the day for a 1:1 battle where you can seize the opponent&#39;s
-        premium clothing. Battle participation requirements:
-      </Element>
-      <RequirementsWrapper>
-        <Requirements>• You should own a premium character.</Requirements>
-        <Requirements>• You should possess premium clothing.</Requirements>
-        <Requirements>
-          • You should grant permission for premium asset authority.
-        </Requirements>
-      </RequirementsWrapper>
-      <Participate>Participate in A battle pool</Participate>
-      <Participate>Participate in B battle pool</Participate>
-      <Participate>Participate in C battle pool</Participate>
-      <Footer>
-        The service provider will not exploit the user&#39;s permission to
-        misuse the user&#39;s assets arbitrarily
-      </Footer>
-    </Container>
+    <>
+      {openedModal === "success" && (
+        <SuccessModal
+          onClose={() => setOpenedModal("")}
+          OKButtonHandler={() => setOpenedModal("")}
+        >
+          <Win>You Win!!</Win>
+          <Content>
+            You have won one piece of Clothing from the opposing player in the
+            game.
+          </Content>
+          <ItemImg src="/images/cat.jpeg" />
+        </SuccessModal>
+      )}
+
+      <Container>
+        <Title>Friday All Night Weekend</Title>
+        <Element>
+          Today is the day for a 1:1 battle where you can seize the
+          opponent&#39;s premium clothing. Battle participation requirements:
+        </Element>
+        <RequirementsWrapper>
+          <Requirements>• You should own a premium character.</Requirements>
+          <Requirements>• You should possess premium clothing.</Requirements>
+          <Requirements>
+            • You should grant permission for premium asset authority.
+          </Requirements>
+        </RequirementsWrapper>
+        <Participate onClick={() => setOpenedModal("success")}>
+          Participate in A battle pool
+        </Participate>
+        <Participate>Participate in B battle pool</Participate>
+        <Participate>Participate in C battle pool</Participate>
+        <Footer>
+          The service provider will not exploit the user&#39;s permission to
+          misuse the user&#39;s assets arbitrarily
+        </Footer>
+      </Container>
+    </>
   );
 };
 
@@ -80,4 +101,23 @@ const Footer = styled.div`
   width: 80%;
   text-align: center;
   color: ${colors.button};
+`;
+
+const Win = styled.div`
+  color: #bb9f00;
+  font-size: 40px;
+  margin: 0;
+  margin-top: 5px;
+`;
+const Content = styled.div`
+  color: ${colors.black};
+  font-size: 35px;
+  margin: 0;
+  margin-top: 5px;
+`;
+const ItemImg = styled.img`
+  width: 200px;
+  height: 200px;
+  border-radius: 18px;
+  margin: 20px;
 `;
