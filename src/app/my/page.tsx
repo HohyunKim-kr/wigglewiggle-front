@@ -8,11 +8,14 @@ import PremiumCharacterModal from "@/components/modal/my-modal/my-character-moda
 import PremiumClothesModal from "@/components/modal/my-modal/my-clothes-modal/PremiumClothesModal";
 import FreeCharacterModal from "@/components/modal/my-modal/my-character-modal/FreeCharacterModal";
 import FreeClothesModal from "@/components/modal/my-modal/my-clothes-modal/FreeClothesModal";
+import RewardModal from "@/components/modal/reward-modal";
 
 import CharacterBlock from "@/components/FreeCharacterBlock";
 import ClothesBlock from "@/components/FreeClothesBlock";
 import ProfileBlock from "@/components/ProfileBlock";
 import RewardBlock from "@/components/RewardBlock";
+import EggDropBlock from "@/components/EggDropBlock";
+
 import { useSelector } from "react-redux";
 import { getAddressState, getNicknameState } from "@/redux/slice/authSlice";
 import { AlchemyProvider, parseEther, parseUnits } from "ethers";
@@ -39,6 +42,14 @@ const My = () => {
 
   return (
     <>
+      {openedModal === "reward" && (
+        <RewardModal
+          imgSrc={"/rewardImg/reward-red.png"}
+          name={"Red"}
+          onClose={() => setOpenedModal("")}
+        />
+      )}
+
       {openedModal === "freeCharacter" && (
         <FreeCharacterModal
           imgSrc={"/images/cat.jpeg"}
@@ -101,13 +112,26 @@ const My = () => {
               My Rewards
             </Item>
             <MyReward style={{ marginLeft: "40px" }}>
-              <RewardBlock imgSrc={"/rewardImg/reward-red.png"} number={0} />
-              <RewardBlock imgSrc={"/rewardImg/reward-orange.png"} number={0} />
-              <RewardBlock imgSrc={"/rewardImg/reward-yellow.png"} number={0} />
-              <RewardBlock imgSrc={"/rewardImg/reward-green.png"} number={0} />
-              <RewardBlock imgSrc={"/rewardImg/reward-blue.png"} number={0} />
-              <RewardBlock imgSrc={"/rewardImg/reward-navy.png"} number={0} />
-              <RewardBlock imgSrc={"/rewardImg/reward-purple.png"} number={0} />
+              <EggDropBlock onClickHandler={() => setOpenedModal("reward")} />
+              <RewardBlock imgSrc={"/rewardImg/reward-red.png"} number={"0"} />
+              <RewardBlock
+                imgSrc={"/rewardImg/reward-orange.png"}
+                number={"0"}
+              />
+              <RewardBlock
+                imgSrc={"/rewardImg/reward-yellow.png"}
+                number={"0"}
+              />
+              <RewardBlock
+                imgSrc={"/rewardImg/reward-green.png"}
+                number={"0"}
+              />
+              <RewardBlock imgSrc={"/rewardImg/reward-blue.png"} number={"0"} />
+              <RewardBlock imgSrc={"/rewardImg/reward-navy.png"} number={"0"} />
+              <RewardBlock
+                imgSrc={"/rewardImg/reward-purple.png"}
+                number={"0"}
+              />
             </MyReward>
           </MyRewardContainer>
           <MyCharacterContainer>
