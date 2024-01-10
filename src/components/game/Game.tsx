@@ -1,9 +1,13 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import Phaser from "phaser";
 
-export default function Game() {
+export default function Game({
+  setIsWin,
+}: {
+  setIsWin: Dispatch<SetStateAction<boolean>>;
+}) {
   // const gameRef = useRef<HTMLDivElement>(null);
   const gameRef = useRef(null);
   let game: Phaser.Game;
@@ -202,6 +206,7 @@ export default function Game() {
         socketIo.emit("playerScored", { player1Score, player2Score });
         if (player1Score === 3 || player2Score === 3) {
           endGame();
+          setIsWin(true);
         }
       };
       function endGame() {

@@ -102,7 +102,6 @@ const EditorWrapper = styled.div`
 const EditorPreview = styled.img`
   width: 800px;
   height: 420px;
-  border: 2px solid black;
   border-radius: 15px;
 
   display: flex;
@@ -121,7 +120,6 @@ const MarketplaceWrapper = styled.div`
 const MarketPlacePreview = styled.img`
   width: 800px;
   height: 327px;
-  border: 1px solid black;
   border-radius: 15px;
 
   display: flex;
